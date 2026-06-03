@@ -1,0 +1,2804 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esmeraldo Store® - Camisas de Futebol Importadas Premium</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #00C070;
+            --primary-dark: #009955;
+            --dark: #000000;
+            --dark-2: #0d0d0d;
+            --dark-3: #141414;
+            --dark-4: #1c1c1c;
+            --light: #FFFFFF;
+            --gold: #D4AF37;
+            --gold-light: #F0CC55;
+            --red-promo: #FF3838;
+            --text-primary: #FFFFFF;
+            --text-secondary: #9a9a9a;
+            --text-muted: #555;
+            --glass-bg: rgba(255,255,255,0.04);
+            --glass-bg-hover: rgba(255,255,255,0.07);
+            --glass-border: rgba(255,255,255,0.08);
+            --glass-border-hover: rgba(0,192,112,0.5);
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --radius-xl: 30px;
+            --shadow-green: 0 8px 32px rgba(0,192,112,0.25);
+            --shadow-card: 0 4px 24px rgba(0,0,0,0.4);
+            --transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Barlow', sans-serif;
+            background: var(--dark-2);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+
+        /* ─── BACKGROUND ─── */
+        .bg-noise {
+            position: fixed; inset: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 10% 20%, rgba(0,192,112,0.07) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 50% at 90% 80%, rgba(212,175,55,0.04) 0%, transparent 60%),
+                linear-gradient(170deg, #0a0a0a 0%, #0d1a14 40%, #0a0a0a 100%);
+            z-index: -2;
+        }
+        .bg-grid {
+            position: fixed; inset: 0;
+            background-image: linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* ─── KEYFRAMES ─── */
+        @keyframes fadeInDown { from { opacity:0; transform:translateY(-20px); } to { opacity:1; transform:translateY(0); } }
+        @keyframes fadeInUp   { from { opacity:0; transform:translateY(30px);  } to { opacity:1; transform:translateY(0); } }
+        @keyframes fadeIn     { from { opacity:0; }                              to { opacity:1; }                          }
+        @keyframes scaleIn    { from { opacity:0; transform:scale(0.92); }       to { opacity:1; transform:scale(1); }     }
+        @keyframes slideInLeft{ from { opacity:0; transform:translateX(-30px); } to { opacity:1; transform:translateX(0); }}
+        @keyframes slideInRight{ from { opacity:0; transform:translateX(30px);  } to { opacity:1; transform:translateX(0); }}
+        @keyframes float      { 0%,100%{transform:translateY(0) rotate(-2deg);} 50%{transform:translateY(-18px) rotate(2deg);} }
+        @keyframes pulse      { 0%,100%{transform:scale(1);} 50%{transform:scale(1.15);} }
+        @keyframes shimmer    { from{background-position:-200% 0;} to{background-position:200% 0;} }
+        @keyframes glow       { 0%,100%{box-shadow:0 0 20px rgba(0,192,112,0.3);} 50%{box-shadow:0 0 40px rgba(0,192,112,0.6);} }
+        @keyframes waBounce   { 0%,100%{transform:translateY(0) scale(1);} 50%{transform:translateY(-6px) scale(1.08);} }
+        @keyframes barAppear  { from{width:0;} to{width:100%;} }
+        @keyframes spin       { from{transform:rotate(0deg);} to{transform:rotate(360deg);} }
+
+        /* ─── HEADER ─── */
+        header {
+            position: sticky; top: 0; z-index: 200;
+            background: rgba(10,10,10,0.88);
+            backdrop-filter: blur(20px) saturate(1.5);
+            -webkit-backdrop-filter: blur(20px) saturate(1.5);
+            border-bottom: 1px solid var(--glass-border);
+            animation: fadeInDown 0.5s ease both;
+        }
+        .header-bar {
+            background: linear-gradient(90deg, var(--primary), var(--gold));
+            height: 3px;
+        }
+        .header-container {
+            max-width: 1440px; margin: 0 auto;
+            display: flex; align-items: center; gap: 1.5rem;
+            padding: 0.85rem 2rem;
+        }
+
+        /* Logo */
+        .logo-wrapper { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
+        .logo-mark {
+            width: 38px; height: 38px;
+            background: linear-gradient(135deg, var(--primary), var(--gold));
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 900; font-size: 1.1rem; color: #000;
+            box-shadow: 0 4px 16px rgba(0,192,112,0.35);
+        }
+        .logo-text {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 900; font-size: 1.7rem;
+            background: linear-gradient(135deg, #fff 0%, var(--primary) 60%, var(--gold) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.5px; text-transform: uppercase;
+        }
+        .logo-text sup { font-size: 0.6rem; top: -0.5em; position: relative; }
+        .logo-sub {
+            font-size: 0.6rem; color: var(--text-secondary);
+            text-transform: uppercase; letter-spacing: 2px;
+            margin-top: -4px; display: block;
+        }
+
+        /* Nav */
+        nav {
+            display: flex; gap: 0.25rem;
+            margin-left: auto;
+        }
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.88rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.5px;
+            padding: 0.5rem 0.85rem;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            position: relative;
+        }
+        nav a:hover { color: var(--text-primary); background: var(--glass-bg); }
+        nav a.nav-promo { color: var(--red-promo); }
+        nav a.nav-promo:hover { background: rgba(255,56,56,0.1); color: #ff6060; }
+
+        /* Search bar */
+        .search-bar {
+            flex: 1; max-width: 320px;
+            position: relative; display: flex;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 0.6rem 1rem 0.6rem 2.6rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            color: var(--text-primary);
+            font-size: 0.88rem;
+            font-family: 'Barlow', sans-serif;
+            transition: var(--transition);
+        }
+        .search-bar input::placeholder { color: var(--text-muted); }
+        .search-bar input:focus { outline: none; border-color: var(--primary); background: rgba(0,192,112,0.06); }
+        .search-icon {
+            position: absolute; left: 0.85rem; top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted); pointer-events: none;
+        }
+
+        /* Header Actions */
+        .header-actions { display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0; }
+        .cart-icon {
+            position: relative; cursor: pointer;
+            display: flex; align-items: center; gap: 0.5rem;
+            color: var(--text-secondary);
+            padding: 0.5rem 0.9rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            transition: var(--transition);
+            font-size: 0.85rem; font-weight: 600;
+        }
+        .cart-icon:hover { color: var(--primary); border-color: rgba(0,192,112,0.4); background: rgba(0,192,112,0.06); }
+        .cart-count {
+            position: absolute; top: -6px; right: -6px;
+            background: var(--gold); color: var(--dark);
+            width: 20px; height: 20px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.68rem; font-weight: 800;
+            animation: pulse 0.4s;
+            border: 2px solid var(--dark-2);
+        }
+
+        /* Menu toggle */
+        .menu-toggle {
+            display: none; background: none; border: none;
+            color: var(--text-primary); cursor: pointer;
+            padding: 0.4rem; border-radius: var(--radius-sm);
+            transition: var(--transition);
+        }
+        .menu-toggle:hover { background: var(--glass-bg); }
+
+        /* ─── HERO ─── */
+        .hero {
+            min-height: 92vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 4rem;
+            padding: 6rem 2rem 4rem;
+            max-width: 1440px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute; top: -30%; right: -10%;
+            width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(0,192,112,0.1) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .hero-left { animation: fadeInUp 0.8s 0.1s both; }
+        .hero-eyebrow {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: rgba(0,192,112,0.12);
+            border: 1px solid rgba(0,192,112,0.3);
+            border-radius: 50px;
+            padding: 0.4rem 1rem;
+            font-size: 0.8rem; font-weight: 700; letter-spacing: 2px;
+            text-transform: uppercase; color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        .hero-eyebrow-dot { width: 6px; height: 6px; background: var(--primary); border-radius: 50%; animation: pulse 2s infinite; }
+        .hero h1 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(3rem, 6vw, 5.5rem);
+            font-weight: 900;
+            line-height: 0.95;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+        .hero h1 .line-1 { display: block; color: var(--text-primary); }
+        .hero h1 .line-2 {
+            display: block;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--gold) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-sub {
+            font-size: 1.1rem; color: var(--text-secondary);
+            font-weight: 400; margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        .hero-benefits {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 0.6rem; margin-bottom: 2.5rem;
+        }
+        .hero-benefit {
+            display: flex; align-items: center; gap: 0.6rem;
+            font-size: 0.88rem; font-weight: 500; color: var(--text-secondary);
+        }
+        .hero-benefit-icon {
+            width: 22px; height: 22px;
+            background: rgba(0,192,112,0.15);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--primary); font-size: 0.7rem; flex-shrink: 0;
+        }
+        .hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+        .btn-hero {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: #000; border: none;
+            border-radius: 50px;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.1rem; font-weight: 800;
+            text-transform: uppercase; letter-spacing: 2px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow-green);
+            position: relative; overflow: hidden;
+        }
+        .btn-hero::after {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.5s;
+        }
+        .btn-hero:hover::after { transform: translateX(100%); }
+        .btn-hero:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,192,112,0.4); }
+        .btn-hero-outline {
+            padding: 1rem 2rem;
+            background: transparent;
+            color: var(--text-primary); border: 1.5px solid var(--glass-border);
+            border-radius: 50px;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .btn-hero-outline:hover { border-color: var(--primary); color: var(--primary); }
+        .hero-stats {
+            display: flex; gap: 2rem; margin-top: 2.5rem;
+            padding-top: 2rem; border-top: 1px solid var(--glass-border);
+        }
+        .hero-stat-num {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.8rem; font-weight: 900; color: var(--primary);
+        }
+        .hero-stat-label { font-size: 0.78rem; color: var(--text-secondary); }
+
+        /* Hero Right - Camisa flutuante */
+        .hero-right {
+            display: flex; align-items: center; justify-content: center;
+            position: relative;
+            animation: fadeIn 1s 0.3s both;
+        }
+        .hero-shirt-wrapper {
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+        .hero-shirt-bg {
+            position: absolute; inset: -30px;
+            background: radial-gradient(circle, rgba(0,192,112,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .hero-shirt-svg {
+            width: min(380px, 90vw);
+            height: auto;
+            filter: drop-shadow(0 20px 60px rgba(0,192,112,0.25));
+        }
+        .hero-badge-float {
+            position: absolute;
+            background: var(--dark-3);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            padding: 0.75rem 1rem;
+            backdrop-filter: blur(10px);
+            display: flex; align-items: center; gap: 0.5rem;
+            font-size: 0.82rem; font-weight: 600;
+            box-shadow: var(--shadow-card);
+        }
+        .hero-badge-float.badge-1 { top: 10%; right: 0; animation: fadeInRight 0.8s 0.6s both; }
+        .hero-badge-float.badge-2 { bottom: 15%; left: -20px; animation: fadeInLeft 0.8s 0.8s both; }
+        @keyframes fadeInRight { from{opacity:0;transform:translateX(20px);} to{opacity:1;transform:translateX(0);} }
+        @keyframes fadeInLeft  { from{opacity:0;transform:translateX(-20px);} to{opacity:1;transform:translateX(0);} }
+        .badge-dot { width: 8px; height: 8px; background: var(--primary); border-radius: 50%; }
+        .badge-dot.gold { background: var(--gold); }
+
+        /* ─── TRUST STRIP ─── */
+        .trust-strip {
+            background: var(--dark-3);
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 1.25rem 2rem;
+        }
+        .trust-container {
+            max-width: 1440px; margin: 0 auto;
+            display: flex; justify-content: center;
+            gap: 3rem; flex-wrap: wrap;
+        }
+        .trust-item {
+            display: flex; align-items: center; gap: 0.75rem;
+        }
+        .trust-icon {
+            width: 40px; height: 40px;
+            background: rgba(0,192,112,0.1);
+            border: 1px solid rgba(0,192,112,0.2);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--primary); flex-shrink: 0;
+        }
+        .trust-text-main { font-size: 0.9rem; font-weight: 700; }
+        .trust-text-sub { font-size: 0.75rem; color: var(--text-secondary); }
+
+        /* ─── SECTIONS ─── */
+        .carousel-section {
+            padding: 3.5rem 2rem 0;
+            max-width: 1440px; margin: 0 auto;
+        }
+
+        .section-header {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+        .section-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex; align-items: center; gap: 0.75rem;
+        }
+        .section-title .league-logo {
+            height: 1.2em; width: auto;
+            vertical-align: middle;
+            filter: brightness(0.9);
+        }
+        .section-title .title-accent {
+            color: var(--primary);
+        }
+        .section-bar {
+            height: 3px; width: 60px;
+            background: linear-gradient(90deg, var(--primary), var(--gold));
+            border-radius: 2px;
+            margin-top: 0.4rem;
+        }
+        .section-link {
+            font-size: 0.85rem; font-weight: 600; color: var(--primary);
+            text-decoration: none; text-transform: uppercase; letter-spacing: 1px;
+            display: flex; align-items: center; gap: 0.3rem;
+            transition: var(--transition);
+        }
+        .section-link:hover { color: var(--gold); }
+
+        /* ─── TEAM FILTER STRIP ─── */
+        .team-strip-wrapper {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        .team-strip {
+            display: flex; gap: 0.75rem;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 0.75rem 0.25rem;
+            -ms-overflow-style: none; scrollbar-width: none;
+        }
+        .team-strip::-webkit-scrollbar { display: none; }
+        .team-chip {
+            flex-shrink: 0;
+            display: flex; align-items: center; gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--glass-bg);
+            border: 1.5px solid var(--glass-border);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.82rem; font-weight: 600; color: var(--text-secondary);
+            white-space: nowrap;
+        }
+        .team-chip:hover { border-color: rgba(0,192,112,0.4); color: var(--text-primary); background: rgba(0,192,112,0.07); }
+        .team-chip.active { border-color: var(--primary); color: var(--primary); background: rgba(0,192,112,0.12); }
+        .team-chip svg { width: 22px; height: 22px; flex-shrink: 0; }
+
+        /* ─── CAROUSEL ─── */
+        .carousel-container { position: relative; }
+        .carousel {
+            display: flex; gap: 1.25rem;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 1rem 0.25rem 1.5rem;
+            -ms-overflow-style: none; scrollbar-width: none;
+        }
+        .carousel::-webkit-scrollbar { display: none; }
+        .carousel-arrow {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            z-index: 10; display: flex; align-items: center; justify-content: center;
+            width: 44px; height: 44px; border-radius: 50%;
+            background: rgba(0,0,0,0.7); border: 1.5px solid var(--glass-border);
+            color: var(--text-primary); cursor: pointer;
+            backdrop-filter: blur(8px);
+            transition: var(--transition);
+        }
+        .carousel-arrow:hover { background: var(--primary); border-color: var(--primary); color: #000; transform: translateY(-50%) scale(1.1); }
+        .carousel-arrow.prev { left: -22px; }
+        .carousel-arrow.next { right: -22px; }
+
+        /* ─── PRODUCT CARD ─── */
+        .product-card {
+            flex: 0 0 calc(25% - 1rem);
+            min-width: 220px;
+            background: var(--dark-3);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            cursor: pointer;
+            transition: var(--transition);
+            animation: scaleIn 0.5s both;
+            position: relative;
+        }
+        .product-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0,192,112,0.4);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,192,112,0.1);
+        }
+
+        /* Product Image Area */
+        .product-image {
+            position: relative;
+            width: 100%; height: 260px;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(145deg, #141414 0%, #1a1a1a 100%);
+        }
+        .product-image-bg {
+            position: absolute; inset: 0;
+            transition: var(--transition);
+        }
+        .product-card:hover .product-image-bg {
+            transform: scale(1.05);
+        }
+        .product-img-svg {
+            position: relative; z-index: 2;
+            transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+            filter: drop-shadow(0 8px 24px rgba(0,0,0,0.6));
+        }
+        .product-card:hover .product-img-svg {
+            transform: scale(1.08) translateY(-4px);
+        }
+        .product-team-badge {
+            position: absolute; bottom: 10px; left: 10px; z-index: 5;
+            width: 34px; height: 34px;
+            background: rgba(0,0,0,0.7);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            border: 1.5px solid var(--glass-border);
+            backdrop-filter: blur(4px);
+        }
+        .product-team-badge svg { width: 20px; height: 20px; }
+
+        /* Badges */
+        .product-badges {
+            position: absolute; top: 10px; right: 10px;
+            display: flex; flex-direction: column; gap: 0.35rem; z-index: 5;
+        }
+        .badge {
+            padding: 0.3rem 0.65rem;
+            border-radius: 6px;
+            font-size: 0.65rem; font-weight: 800;
+            text-transform: uppercase; letter-spacing: 1px;
+            backdrop-filter: blur(4px);
+        }
+        .badge-mais-vendida { background: var(--gold); color: #000; }
+        .badge-novo         { background: var(--primary); color: #000; }
+        .badge-promocao     { background: var(--red-promo); color: #fff; }
+        .badge-importada    { background: rgba(255,255,255,0.12); color: var(--text-primary); border: 1px solid rgba(255,255,255,0.15); }
+
+        /* Product Info */
+        .product-info { padding: 1.1rem 1.25rem 1.25rem; }
+        .product-rating { display: flex; align-items: center; gap: 0.35rem; margin-bottom: 0.5rem; }
+        .stars { color: var(--gold); font-size: 0.75rem; letter-spacing: 1px; }
+        .rating-count { font-size: 0.72rem; color: var(--text-secondary); }
+        .product-name {
+            font-size: 0.95rem; font-weight: 700;
+            color: var(--text-primary); margin-bottom: 0.6rem;
+            line-height: 1.3;
+        }
+        .product-price {
+            display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap;
+            margin-bottom: 0.9rem;
+        }
+        .price-current {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.4rem; font-weight: 800; color: var(--primary);
+        }
+        .price-old {
+            font-size: 0.85rem; color: var(--text-muted);
+            text-decoration: line-through;
+        }
+        .price-off {
+            font-size: 0.72rem; font-weight: 700;
+            color: var(--red-promo);
+            background: rgba(255,56,56,0.12);
+            padding: 0.1rem 0.4rem; border-radius: 4px;
+        }
+        .product-btns { display: grid; grid-template-columns: 1fr auto; gap: 0.5rem; }
+        .btn-add {
+            padding: 0.7rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #000; border: none;
+            border-radius: var(--radius-sm);
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.9rem; font-weight: 800;
+            text-transform: uppercase; letter-spacing: 1px;
+            cursor: pointer; transition: var(--transition);
+        }
+        .btn-add:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,192,112,0.3); }
+        .btn-detail {
+            padding: 0.7rem 0.85rem;
+            background: var(--glass-bg);
+            border: 1.5px solid var(--glass-border);
+            color: var(--text-secondary); border-radius: var(--radius-sm);
+            cursor: pointer; transition: var(--transition);
+            display: flex; align-items: center;
+        }
+        .btn-detail:hover { border-color: rgba(255,255,255,0.3); color: var(--text-primary); }
+
+        /* ─── MODAL ─── */
+        .modal {
+            display: none; position: fixed; inset: 0;
+            background: rgba(0,0,0,0.92); z-index: 1000;
+            animation: fadeIn 0.25s;
+            overflow-y: auto; padding: 2rem 1rem;
+            align-items: center; justify-content: center;
+        }
+        .modal.active { display: flex; }
+        .modal-content {
+            background: var(--dark-3);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            padding: 2.5rem;
+            max-width: 920px; width: 100%;
+            max-height: 90vh; overflow-y: auto;
+            animation: scaleIn 0.3s;
+            position: relative;
+        }
+        .modal-close {
+            position: absolute; top: 1.5rem; right: 1.5rem;
+            background: var(--glass-bg); border: 1px solid var(--glass-border);
+            color: var(--text-primary); font-size: 1.3rem;
+            width: 40px; height: 40px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: var(--transition); z-index: 5;
+        }
+        .modal-close:hover { background: rgba(255,255,255,0.1); transform: rotate(90deg); }
+        .product-detail { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start; }
+        .gallery-main {
+            width: 100%; aspect-ratio: 1;
+            background: linear-gradient(145deg, #141414, #1a1a1a);
+            border-radius: var(--radius-lg);
+            display: flex; align-items: center; justify-content: center;
+            cursor: zoom-in; overflow: hidden;
+            border: 1px solid var(--glass-border);
+            margin-bottom: 1rem;
+        }
+        .gallery-thumbs {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem;
+        }
+        .thumb {
+            aspect-ratio: 1;
+            background: var(--glass-bg); border: 2px solid var(--glass-border);
+            border-radius: var(--radius-sm);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: var(--transition);
+        }
+        .thumb:hover, .thumb.active { border-color: var(--primary); }
+        .product-details { display: flex; flex-direction: column; gap: 1.25rem; }
+        .detail-group { display: flex; flex-direction: column; gap: 0.5rem; }
+        .detail-label {
+            font-size: 0.78rem; text-transform: uppercase;
+            letter-spacing: 1.5px; color: var(--text-secondary); font-weight: 700;
+        }
+        .size-options { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; }
+        .size-btn {
+            padding: 0.65rem; background: var(--glass-bg);
+            border: 1.5px solid var(--glass-border);
+            color: var(--text-primary); border-radius: var(--radius-sm);
+            cursor: pointer; transition: var(--transition); font-weight: 700;
+        }
+        .size-btn:hover, .size-btn.active { border-color: var(--primary); background: rgba(0,192,112,0.12); color: var(--primary); }
+        .color-options { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .color-btn {
+            width: 36px; height: 36px; border-radius: 50%;
+            border: 3px solid var(--glass-border);
+            cursor: pointer; transition: var(--transition);
+        }
+        .color-btn:hover, .color-btn.active { border-color: var(--gold); transform: scale(1.15); }
+        input[type="text"], input[type="number"] {
+            padding: 0.75rem 1rem;
+            background: var(--glass-bg);
+            border: 1.5px solid var(--glass-border);
+            color: var(--text-primary); border-radius: var(--radius-sm);
+            font-size: 0.95rem; font-family: 'Barlow', sans-serif;
+            transition: var(--transition); width: 100%;
+        }
+        input:focus { outline: none; border-color: var(--primary); background: rgba(0,192,112,0.07); }
+        .price-display {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 2.8rem; font-weight: 900; color: var(--primary);
+        }
+        .product-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+        .btn-secondary {
+            padding: 1rem; background: var(--glass-bg);
+            border: 1.5px solid var(--primary); color: var(--primary);
+            border-radius: var(--radius-md); font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1rem; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 1px; cursor: pointer; transition: var(--transition);
+        }
+        .btn-secondary:hover { background: rgba(0,192,112,0.12); }
+        .btn-primary-modal {
+            padding: 1rem; background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border: none; color: #000; border-radius: var(--radius-md);
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1rem; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 1px; cursor: pointer; transition: var(--transition);
+        }
+        .btn-primary-modal:hover { transform: translateY(-2px); box-shadow: var(--shadow-green); }
+        .zoom-overlay {
+            display: none; position: fixed; inset: 0;
+            background: rgba(0,0,0,0.96); z-index: 2000;
+            cursor: zoom-out; align-items: center; justify-content: center;
+        }
+        .zoom-overlay.active { display: flex; }
+
+        /* ─── CART SIDEBAR ─── */
+        .cart-sidebar {
+            position: fixed; right: -420px; top: 0;
+            width: 420px; height: 100vh;
+            background: var(--dark-3);
+            border-left: 1px solid var(--glass-border);
+            z-index: 500; transition: right 0.35s cubic-bezier(0.4,0,0.2,1);
+            display: flex; flex-direction: column;
+            backdrop-filter: blur(20px);
+        }
+        .cart-sidebar.active { right: 0; }
+        .cart-header {
+            padding: 1.75rem 1.75rem 1.25rem;
+            border-bottom: 1px solid var(--glass-border);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .cart-header h2 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.4rem; font-weight: 900; text-transform: uppercase;
+        }
+        .cart-items { flex: 1; overflow-y: auto; padding: 1.25rem; }
+        .cart-item {
+            background: var(--dark-4);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            padding: 1rem; margin-bottom: 0.85rem;
+            display: grid; grid-template-columns: 56px 1fr auto;
+            gap: 0.85rem; align-items: center;
+            transition: var(--transition);
+        }
+        .cart-item:hover { border-color: rgba(0,192,112,0.25); }
+        .cart-item-image {
+            width: 56px; height: 56px;
+            background: linear-gradient(145deg, #141414, #1c1c1c);
+            border-radius: var(--radius-sm);
+            display: flex; align-items: center; justify-content: center;
+            border: 1px solid var(--glass-border);
+        }
+        .cart-item-details { display: flex; flex-direction: column; gap: 0.3rem; }
+        .cart-item-name { font-weight: 700; font-size: 0.88rem; line-height: 1.3; }
+        .cart-item-spec { font-size: 0.72rem; color: var(--text-secondary); }
+        .cart-item-price { font-size: 1rem; font-weight: 800; color: var(--primary); margin-top: 0.25rem; }
+        .cart-item-remove {
+            background: none; border: none; color: var(--text-muted);
+            cursor: pointer; font-size: 1.1rem; padding: 0.25rem;
+            transition: var(--transition); border-radius: 4px;
+        }
+        .cart-item-remove:hover { color: var(--red-promo); background: rgba(255,56,56,0.1); }
+        .cart-footer {
+            padding: 1.25rem 1.75rem 1.75rem;
+            border-top: 1px solid var(--glass-border);
+        }
+        .cart-total {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 1rem; font-size: 1.2rem; font-weight: 800;
+        }
+        .cart-total-price { color: var(--primary); font-size: 1.5rem; }
+        .btn-checkout {
+            width: 100%; padding: 1.1rem;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: #fff; border: none; border-radius: var(--radius-md);
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px;
+            cursor: pointer; transition: var(--transition);
+            display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+        }
+        .btn-checkout:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,211,102,0.3); }
+        .empty-cart {
+            text-align: center; padding: 3rem 2rem;
+            color: var(--text-secondary);
+        }
+        .empty-cart-icon { font-size: 3rem; margin-bottom: 1rem; opacity: 0.4; }
+
+        /* ─── WHATSAPP FLUTUANTE ─── */
+        .wa-float {
+            position: fixed; bottom: 28px; right: 28px; z-index: 400;
+            width: 58px; height: 58px; border-radius: 50%;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; box-shadow: 0 6px 24px rgba(37,211,102,0.5);
+            animation: waBounce 3s ease-in-out infinite;
+            border: none;
+            text-decoration: none;
+        }
+        .wa-float:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(37,211,102,0.6); animation: none; }
+        .wa-tooltip {
+            position: absolute; right: 70px; top: 50%;
+            transform: translateY(-50%);
+            background: #000; color: #fff;
+            padding: 0.4rem 0.75rem; border-radius: 6px;
+            font-size: 0.78rem; font-weight: 600; white-space: nowrap;
+            opacity: 0; pointer-events: none; transition: var(--transition);
+        }
+        .wa-float:hover .wa-tooltip { opacity: 1; }
+
+        /* ─── FOOTER ─── */
+        footer {
+            background: var(--dark-3);
+            border-top: 1px solid var(--glass-border);
+            margin-top: 5rem;
+            padding: 4rem 2rem 2rem;
+        }
+        .footer-grid {
+            max-width: 1440px; margin: 0 auto;
+            display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem; margin-bottom: 3rem;
+        }
+        .footer-brand-logo { margin-bottom: 1rem; }
+        .footer-logo-text {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.6rem; font-weight: 900; text-transform: uppercase;
+            background: linear-gradient(135deg, var(--primary), var(--gold));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .footer-desc { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem; }
+        .footer-social { display: flex; gap: 0.75rem; }
+        .social-btn {
+            width: 38px; height: 38px; border-radius: 10px;
+            background: var(--glass-bg); border: 1px solid var(--glass-border);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-secondary); cursor: pointer;
+            text-decoration: none; transition: var(--transition);
+        }
+        .social-btn:hover { background: rgba(0,192,112,0.1); border-color: rgba(0,192,112,0.4); color: var(--primary); }
+        .footer-col h4 {
+            font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px;
+            color: var(--text-secondary); font-weight: 700; margin-bottom: 1rem;
+        }
+        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+        .footer-col ul li a {
+            font-size: 0.9rem; color: var(--text-secondary); text-decoration: none;
+            transition: var(--transition);
+        }
+        .footer-col ul li a:hover { color: var(--primary); }
+        .footer-bottom {
+            max-width: 1440px; margin: 0 auto;
+            padding-top: 2rem; border-top: 1px solid var(--glass-border);
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 1rem;
+        }
+        .footer-bottom-text { font-size: 0.82rem; color: var(--text-muted); }
+        .footer-bottom-text span { color: var(--primary); }
+
+        /* ─── MOBILE NAV ─── */
+        @media (max-width: 1024px) {
+            nav { display: none; }
+            .menu-toggle { display: flex; }
+            .search-bar { display: none; }
+            .hero { grid-template-columns: 1fr; text-align: center; gap: 2rem; min-height: auto; padding: 4rem 1.5rem; }
+            .hero-benefits { max-width: 340px; margin-left: auto; margin-right: auto; }
+            .hero-actions { justify-content: center; }
+            .hero-stats { justify-content: center; }
+            .hero-right { order: -1; }
+            .hero-shirt-svg { width: min(280px, 80vw); }
+            .hero-badge-float { display: none; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            .header-container { padding: 0.75rem 1rem; }
+            .product-card { flex: 0 0 calc(50% - 0.7rem); min-width: 160px; }
+            .product-image { height: 200px; }
+            .cart-sidebar { width: 100%; right: -100%; }
+            .product-detail { grid-template-columns: 1fr; }
+            .product-actions { grid-template-columns: 1fr; }
+            .carousel-section { padding: 2rem 1rem 0; }
+            .carousel-arrow { display: none; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .trust-container { gap: 1.5rem; }
+            nav.active {
+                display: flex; flex-direction: column;
+                position: absolute; top: 100%; left: 0; right: 0;
+                background: rgba(10,10,10,0.97);
+                border-bottom: 1px solid var(--glass-border);
+                padding: 1rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 2.4rem; }
+            .modal-content { padding: 1.25rem; border-radius: var(--radius-lg); }
+            .product-btns { grid-template-columns: 1fr; }
+            .btn-detail { display: none; }
+        }
+
+        /* ─── NOTIFICATION ─── */
+        .notification {
+            position: fixed; bottom: 100px; right: 24px;
+            background: var(--dark-3); border: 1px solid var(--primary);
+            color: var(--text-primary); padding: 1rem 1.5rem;
+            border-radius: var(--radius-md);
+            font-weight: 600; font-size: 0.9rem;
+            z-index: 600; box-shadow: var(--shadow-green);
+            display: flex; align-items: center; gap: 0.6rem;
+            animation: fadeInUp 0.3s;
+        }
+        .notif-check { color: var(--primary); font-size: 1.1rem; }
+
+        /* Utility */
+        .section-sep {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
+            margin: 0 2rem;
+        }
+
+        /* ─── PAINEL ADM OCULTO ─── */
+        .adm-overlay {
+            position: fixed; inset: 0; z-index: 9999;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(10px);
+            display: none;
+            align-items: center; justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+        .adm-overlay.active { display: flex; }
+        
+        .adm-modal {
+            background: linear-gradient(135deg, var(--dark-3) 0%, var(--dark-4) 100%);
+            border: 1px solid rgba(0,192,112,0.3);
+            border-radius: 24px;
+            width: 95%;
+            max-width: 1100px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0,192,112,0.2);
+            animation: scaleIn 0.3s ease;
+        }
+
+        .adm-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(0,192,112,0.2);
+        }
+
+        .adm-title {
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff 0%, var(--primary) 60%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 1px;
+        }
+
+        .adm-close {
+            width: 40px; height: 40px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .adm-close:hover {
+            background: rgba(255,56,56,0.2);
+            border-color: var(--red-promo);
+            color: var(--red-promo);
+        }
+
+        .adm-tabs {
+            display: flex; gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(0,192,112,0.1);
+            overflow-x: auto;
+        }
+
+        .adm-tab-btn {
+            padding: 0.75rem 1.25rem;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            color: var(--text-secondary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        .adm-tab-btn.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .adm-tab-content {
+            display: none;
+        }
+
+        .adm-tab-content.active {
+            display: block;
+        }
+
+        .adm-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .adm-form-group {
+            display: flex; flex-direction: column; gap: 0.5rem;
+        }
+
+        .adm-form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .adm-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+        }
+
+        .adm-input, .adm-select {
+            padding: 0.75rem;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(0,192,112,0.2);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-family: 'Barlow', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+
+        .adm-input:focus, .adm-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(0,192,112,0.08);
+        }
+
+        .adm-upload-area {
+            grid-column: 1 / -1;
+            border: 2px dashed rgba(0,192,112,0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: rgba(0,192,112,0.05);
+        }
+
+        .adm-upload-area:hover {
+            border-color: var(--primary);
+            background: rgba(0,192,112,0.1);
+        }
+
+        .adm-upload-area input {
+            display: none;
+        }
+
+        .adm-images-preview {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            gap: 1rem;
+        }
+
+        .adm-image-item {
+            position: relative;
+            border: 1px solid rgba(0,192,112,0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            aspect-ratio: 1;
+            background: rgba(0,192,112,0.05);
+        }
+
+        .adm-image-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .adm-image-remove {
+            position: absolute;
+            top: 5px; right: 5px;
+            width: 28px; height: 28px;
+            background: rgba(255,56,56,0.9);
+            border: none;
+            border-radius: 6px;
+            color: #fff;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem;
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .adm-image-item:hover .adm-image-remove {
+            opacity: 1;
+        }
+
+        .adm-buttons {
+            grid-column: 1 / -1;
+            display: flex; gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .adm-btn {
+            flex: 1;
+            padding: 0.9rem;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .adm-btn-save {
+            background: linear-gradient(135deg, var(--primary), #00a060);
+            color: #000;
+        }
+
+        .adm-btn-save:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,192,112,0.3);
+        }
+
+        .adm-btn-cancel {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-primary);
+        }
+
+        .adm-btn-cancel:hover {
+            background: rgba(255,255,255,0.08);
+        }
+
+        .adm-produtos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .adm-produto-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(0,192,112,0.15);
+            border-radius: 12px;
+            padding: 1rem;
+            transition: all 0.3s;
+        }
+
+        .adm-produto-card:hover {
+            border-color: rgba(0,192,112,0.4);
+            background: rgba(255,255,255,0.06);
+        }
+
+        .adm-produto-nome {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .adm-produto-preco {
+            color: var(--gold);
+            font-size: 1.3rem;
+            font-weight: 900;
+            margin: 0.75rem 0;
+        }
+
+        .adm-product-actions {
+            display: flex; gap: 0.5rem;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .adm-product-actions button {
+            flex: 1;
+            padding: 0.5rem;
+            background: rgba(0,192,112,0.1);
+            border: 1px solid rgba(0,192,112,0.3);
+            color: var(--primary);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .adm-product-actions button:hover {
+            background: rgba(0,192,112,0.2);
+        }
+
+        .logo-wrapper { cursor: pointer; transition: all 0.3s; }
+        .logo-wrapper:active { transform: scale(0.95); }
+    </style>
+</head>
+<body>
+    <div class="bg-noise"></div>
+    <div class="bg-grid"></div>
+
+    <!-- PAINEL ADM OCULTO -->
+    <div class="adm-overlay" id="admOverlay">
+        <div class="adm-modal">
+            <div class="adm-header">
+                <h1 class="adm-title">⚙️ Painel Administrativo</h1>
+                <button class="adm-close" onclick="fecharAdm()">✕</button>
+            </div>
+
+            <div class="adm-tabs">
+                <button class="adm-tab-btn active" onclick="mudarAbaAdm('dashboard')">📊 Dashboard</button>
+                <button class="adm-tab-btn" onclick="mudarAbaAdm('produtos')">📦 Produtos</button>
+                <button class="adm-tab-btn" onclick="mudarAbaAdm('novo')">➕ Novo Produto</button>
+            </div>
+
+            <!-- DASHBOARD -->
+            <div id="adm-dashboard" class="adm-tab-content active">
+                <h3 style="margin-bottom: 1.5rem; color: var(--primary); font-size: 1.3rem;">Resumo da Loja</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+                    <div style="background: rgba(0,192,112,0.1); border: 1px solid rgba(0,192,112,0.2); border-radius: 12px; padding: 1.5rem; text-align: center;">
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 0.5rem;">Total de Produtos</div>
+                        <div style="font-size: 2.5rem; font-weight: 900; color: var(--primary);" id="admTotalProdutos">0</div>
+                    </div>
+                    <div style="background: rgba(0,192,112,0.1); border: 1px solid rgba(0,192,112,0.2); border-radius: 12px; padding: 1.5rem; text-align: center;">
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 0.5rem;">Categorias</div>
+                        <div style="font-size: 2.5rem; font-weight: 900; color: var(--gold);" id="admTotalCategorias">0</div>
+                    </div>
+                    <div style="background: rgba(0,192,112,0.1); border: 1px solid rgba(0,192,112,0.2); border-radius: 12px; padding: 1.5rem; text-align: center;">
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 0.5rem;">Estoque Total</div>
+                        <div style="font-size: 2.5rem; font-weight: 900; color: #00ff00;" id="admTotalEstoque">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PRODUTOS -->
+            <div id="adm-produtos" class="adm-tab-content">
+                <h3 style="margin-bottom: 1.5rem; color: var(--primary); font-size: 1.3rem;">Gerenciar Produtos</h3>
+                <div class="adm-produtos-grid" id="admProdutosGrid"></div>
+            </div>
+
+            <!-- NOVO PRODUTO -->
+            <div id="adm-novo" class="adm-tab-content">
+                <h3 style="margin-bottom: 1.5rem; color: var(--primary); font-size: 1.3rem;">Adicionar/Editar Produto</h3>
+                <form class="adm-form" id="admProdutoForm">
+                    <div class="adm-form-group">
+                        <label class="adm-label">Nome da Camisa *</label>
+                        <input type="text" class="adm-input" id="admNomeProduto" placeholder="Ex: Manchester United" required>
+                    </div>
+
+                    <div class="adm-form-group">
+                        <label class="adm-label">Categoria *</label>
+                        <select class="adm-select" id="admCategoriaProduto" required>
+                            <option value="">Selecione uma categoria</option>
+                            <option value="Times Europeus">Times Europeus</option>
+                            <option value="Times Brasileiros">Times Brasileiros</option>
+                            <option value="Seleções">Seleções Nacionais</option>
+                            <option value="Clássicos">Clássicos</option>
+                        </select>
+                    </div>
+
+                    <div class="adm-form-group">
+                        <label class="adm-label">Preço (R$) *</label>
+                        <input type="number" class="adm-input" id="admPrecoProduto" placeholder="189.90" step="0.01" required>
+                    </div>
+
+                    <div class="adm-form-group">
+                        <label class="adm-label">Preço Original (R$)</label>
+                        <input type="number" class="adm-input" id="admPrecoOriginal" placeholder="Deixe vazio se sem promoção" step="0.01">
+                    </div>
+
+                    <div class="adm-form-group">
+                        <label class="adm-label">Cor (Hex) *</label>
+                        <input type="color" class="adm-input" id="admCorProduto" value="#ff0000" required>
+                    </div>
+
+                    <div class="adm-form-group">
+                        <label class="adm-label">Avaliação (1-5)</label>
+                        <input type="number" class="adm-input" id="admAvaliacaoProduto" min="1" max="5" step="0.5" value="4.5">
+                    </div>
+
+                    <div class="adm-form-group">
+                        <label class="adm-label">Reviews (Quantidade)</label>
+                        <input type="number" class="adm-input" id="admReviewsProduto" value="128">
+                    </div>
+
+                    <div class="adm-form-group">
+                        <label class="adm-label">Estoque</label>
+                        <input type="number" class="adm-input" id="admEstoqueProduto" value="10" min="0">
+                    </div>
+
+                    <div class="adm-form-group full">
+                        <label class="adm-label">📸 Enviar Múltiplas Fotos (diferentes ângulos)</label>
+                        <div class="adm-upload-area" onclick="document.getElementById('admInputFotos').click()">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">📷</div>
+                            <div>Clique para selecionar múltiplas imagens</div>
+                            <small style="color: var(--text-secondary); display: block; margin-top: 0.5rem;">Você pode enviar: frontal, traseira, lateral, detalhe</small>
+                            <input type="file" id="admInputFotos" multiple accept="image/*">
+                        </div>
+                        <div class="adm-images-preview" id="admFotosPreview"></div>
+                    </div>
+
+                    <div class="adm-form-group full">
+                        <label class="adm-label">Badges/Tags</label>
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="checkbox" id="admBadgeMaisVendida"> Mais Vendida
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="checkbox" id="admBadgeNovo"> Novo
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="checkbox" id="admBadgePromocao"> Promoção
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="checkbox" id="admBadgeImportada"> Importada
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="adm-buttons">
+                        <button type="button" class="adm-btn adm-btn-save" onclick="salvarProdutoAdm()">💾 Salvar Produto</button>
+                        <button type="button" class="adm-btn adm-btn-cancel" onclick="limparFormAdm()">Limpar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="header-bar"></div>
+        <div class="header-container">
+            <!-- Logo -->
+            <div class="logo-wrapper">
+                <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+                </button>
+                <div class="logo-mark">E</div>
+                <div>
+                    <div class="logo-text">Esmeraldo<sup>®</sup></div>
+                    <span class="logo-sub">Store Premium</span>
+                </div>
+            </div>
+
+            <!-- Search -->
+            <div class="search-bar">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="text" id="searchInput" placeholder="Buscar camisas, times...">
+            </div>
+
+            <!-- Nav -->
+            <nav id="nav">
+                <a href="#inicio">Início</a>
+                <a href="#brasileirao">Brasileirão</a>
+                <a href="#europeus">Europeus</a>
+                <a href="#selecoes">Seleções</a>
+                <a href="#promocoes" class="nav-promo">Promoções</a>
+                <a href="#contato">Contato</a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="header-actions">
+                <div class="cart-icon" id="cartToggle" role="button" aria-label="Carrinho">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2 -1.61l1.38 -7.39h-15.1"/></svg>
+                    <span>Carrinho</span>
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MODAL PRODUTO -->
+    <div class="modal" id="productModal">
+        <button class="modal-close" id="modalClose">×</button>
+        <div class="modal-content" id="modalContent"></div>
+    </div>
+
+    <!-- ZOOM -->
+    <div class="zoom-overlay" id="zoomOverlay"></div>
+
+    <!-- CART SIDEBAR -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2>🛒 Seu Carrinho</h2>
+            <button class="modal-close" id="cartClose">×</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart">
+                <div class="empty-cart-icon">🛒</div>
+                <p>Seu carrinho está vazio</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total</span>
+                <span class="cart-total-price" id="cartTotalPrice">R$ 0,00</span>
+            </div>
+            <button class="btn-checkout" id="checkoutBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9"/></svg>
+                Finalizar no WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <!-- WHATSAPP FLUTUANTE -->
+    <button class="wa-float" id="waFloat" aria-label="WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9"/><path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1"/></svg>
+        <span class="wa-tooltip">Fale conosco!</span>
+    </button>
+
+    <main>
+        <!-- ── HERO ── -->
+        <section class="hero" id="inicio">
+            <div class="hero-left">
+                <div class="hero-eyebrow">
+                    <span class="hero-eyebrow-dot"></span>
+                    Camisas Importadas Premium
+                </div>
+                <h1>
+                    <span class="line-1">Os Melhores</span>
+                    <span class="line-2">Mantos do Mundo</span>
+                </h1>
+                <p class="hero-sub">Qualidade tailandesa, autenticidade garantida. As camisas que os grandes jogadores usam, agora para você.</p>
+                <div class="hero-benefits">
+                    <div class="hero-benefit"><div class="hero-benefit-icon">✓</div> Qualidade Premium</div>
+                    <div class="hero-benefit"><div class="hero-benefit-icon">✓</div> Personalização Disponível</div>
+                    <div class="hero-benefit"><div class="hero-benefit-icon">✓</div> Envio para Todo Brasil</div>
+                    <div class="hero-benefit"><div class="hero-benefit-icon">✓</div> Atendimento Rápido</div>
+                </div>
+                <div class="hero-actions">
+                    <button class="btn-hero" onclick="document.getElementById('categorias').scrollIntoView({behavior:'smooth'})">
+                        Ver Catálogo →
+                    </button>
+                    <button class="btn-hero-outline" id="heroWaBtn">
+                        Falar no WhatsApp
+                    </button>
+                </div>
+                <div class="hero-stats">
+                    <div>
+                        <div class="hero-stat-num">500+</div>
+                        <div class="hero-stat-label">Modelos disponíveis</div>
+                    </div>
+                    <div>
+                        <div class="hero-stat-num">10k+</div>
+                        <div class="hero-stat-label">Clientes satisfeitos</div>
+                    </div>
+                    <div>
+                        <div class="hero-stat-num">⭐4.9</div>
+                        <div class="hero-stat-label">Avaliação média</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-right">
+                <div class="hero-shirt-wrapper">
+                    <div class="hero-shirt-bg"></div>
+                    <!-- Camisa SVG destaque (verde Brasil) -->
+                    <svg class="hero-shirt-svg" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="shirtGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#009C3B"/>
+                                <stop offset="100%" style="stop-color:#007728"/>
+                            </linearGradient>
+                            <linearGradient id="collarGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:#FFD700"/>
+                                <stop offset="100%" style="stop-color:#D4AF37"/>
+                            </linearGradient>
+                            <filter id="shirtShadow"><feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="rgba(0,0,0,0.6)"/></filter>
+                        </defs>
+                        <!-- Corpo da camisa -->
+                        <path d="M60,40 L30,70 L10,65 L20,110 L40,108 L40,200 L160,200 L160,108 L180,110 L190,65 L170,70 L140,40" fill="url(#shirtGrad)" filter="url(#shirtShadow)"/>
+                        <!-- Gola -->
+                        <path d="M75,40 Q100,55 125,40 L120,30 Q100,42 80,30 Z" fill="url(#collarGrad)"/>
+                        <!-- Faixa dourada -->
+                        <path d="M40,85 L160,85 L160,95 L40,95 Z" fill="rgba(255,215,0,0.3)"/>
+                        <!-- Detalhe sleeve -->
+                        <path d="M30,70 L10,65 L20,110 L40,108 L40,75Z" fill="rgba(0,0,0,0.15)"/>
+                        <path d="M170,70 L190,65 L180,110 L160,108 L160,75Z" fill="rgba(0,0,0,0.15)"/>
+                        <!-- Escudo placeholder -->
+                        <circle cx="80" cy="120" r="18" fill="rgba(255,255,255,0.1)" stroke="rgba(255,215,0,0.4)" stroke-width="1.5"/>
+                        <text x="80" y="126" text-anchor="middle" fill="rgba(255,215,0,0.8)" font-size="14" font-weight="bold">⭐</text>
+                        <!-- Número -->
+                        <text x="120" y="155" text-anchor="middle" fill="rgba(255,215,0,0.2)" font-size="36" font-weight="900" font-family="Arial">10</text>
+                    </svg>
+                    <div class="hero-badge-float badge-1">
+                        <span class="badge-dot"></span>
+                        Qualidade Premium
+                    </div>
+                    <div class="hero-badge-float badge-2">
+                        <span class="badge-dot gold"></span>
+                        Envio rápido ✈️
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── TRUST STRIP ── -->
+        <div class="trust-strip">
+            <div class="trust-container">
+                <div class="trust-item">
+                    <div class="trust-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <div>
+                        <div class="trust-text-main">Compra Segura</div>
+                        <div class="trust-text-sub">Pagamento protegido</div>
+                    </div>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </div>
+                    <div>
+                        <div class="trust-text-main">Qualidade Premium</div>
+                        <div class="trust-text-sub">Importadas tailandesas</div>
+                    </div>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                    </div>
+                    <div>
+                        <div class="trust-text-main">Frete para Todo Brasil</div>
+                        <div class="trust-text-sub">Envio rápido e seguro</div>
+                    </div>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9"/></svg>
+                    </div>
+                    <div>
+                        <div class="trust-text-main">Atendimento via WhatsApp</div>
+                        <div class="trust-text-sub">Resposta em minutos</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── CARROSSÉIS ── -->
+        <section id="categorias">
+
+            <!-- MAIS VENDIDAS -->
+            <div class="carousel-section" id="maisvendidas">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">🔥 <span class="title-accent">Mais</span> Vendidas</h2>
+                        <div class="section-bar"></div>
+                    </div>
+                    <a href="#" class="section-link">Ver todas →</a>
+                </div>
+                <div class="carousel-container">
+                    <button class="carousel-arrow prev" data-carousel="0"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6l6 6"/></svg></button>
+                    <div class="carousel" data-carousel="0"></div>
+                    <button class="carousel-arrow next" data-carousel="0"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6l-6 6"/></svg></button>
+                </div>
+            </div>
+
+            <div class="section-sep"></div>
+
+            <!-- BRASILEIRÃO -->
+            <div class="carousel-section" id="brasileirao">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">
+                            <svg viewBox="0 0 32 32" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="league-logo"><circle cx="16" cy="16" r="16" fill="#009C3B"/><polygon points="16,6 18,13 25,13 19,17 21,24 16,20 11,24 13,17 7,13 14,13" fill="#FFD700" stroke="none"/></svg>
+                            <span class="title-accent">Brasileirão</span>
+                        </h2>
+                        <div class="section-bar"></div>
+                    </div>
+                </div>
+                <!-- Team filter strip for Brasileirao -->
+                <div class="team-strip-wrapper">
+                    <div class="team-strip" id="teamStrip-1">
+                        <button class="team-chip active" data-cat="1" data-team="all" onclick="filterByTeam(1, 'all', this)">
+                            <svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="11" fill="#222"/><text x="11" y="15" text-anchor="middle" font-size="10" fill="#aaa">ALL</text></svg>
+                            Todos
+                        </button>
+                        <button class="team-chip" data-cat="1" data-team="Botafogo" onclick="filterByTeam(1, 'Botafogo', this)">
+                            <svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="11" fill="#1a1a1a" stroke="#fff" stroke-width="1.5"/><text x="11" y="15" text-anchor="middle" font-size="7" fill="#fff" font-weight="bold">BOT</text></svg>
+                            Botafogo
+                        </button>
+                        <button class="team-chip" data-cat="1" data-team="Corinthians" onclick="filterByTeam(1, 'Corinthians', this)">
+                            <svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="11" fill="#1a1a1a"/><path d="M6,11 h10 M11,6 v10" stroke="#fff" stroke-width="2"/></svg>
+                            Corinthians
+                        </button>
+                        <button class="team-chip" data-cat="1" data-team="São Paulo" onclick="filterByTeam(1, 'São Paulo', this)">
+                            <svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="11" fill="#C8102E"/><text x="11" y="15" text-anchor="middle" font-size="7" fill="#fff" font-weight="bold">SPF</text></svg>
+                            São Paulo
+                        </button>
+                        <button class="team-chip" data-cat="1" data-team="Santos" onclick="filterByTeam(1, 'Santos', this)">
+                            <svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="11" fill="#f5f5f5" stroke="#ccc" stroke-width="1"/><text x="11" y="15" text-anchor="middle" font-size="7" fill="#000" font-weight="bold">SAN</text></svg>
+                            Santos
+                        </button>
+                        <button class="team-chip" data-cat="1" data-team="Internacional" onclick="filterByTeam(1, 'Internacional', this)">
+                            <svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="11" fill="#C8102E"/><text x="11" y="15" text-anchor="middle" font-size="7" fill="#fff" font-weight="bold">INT</text></svg>
+                            Internacional
+                        </button>
+                    </div>
+                </div>
+                <div class="carousel-container">
+                    <button class="carousel-arrow prev" data-carousel="1"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6l6 6"/></svg></button>
+                    <div class="carousel" data-carousel="1"></div>
+                    <button class="carousel-arrow next" data-carousel="1"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6l-6 6"/></svg></button>
+                </div>
+            </div>
+
+            <div class="section-sep"></div>
+
+            <!-- PREMIER LEAGUE -->
+            <div class="carousel-section" id="europeus">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">
+                            <svg viewBox="0 0 32 32" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="league-logo"><circle cx="16" cy="16" r="16" fill="#3d195b"/><text x="16" y="21" text-anchor="middle" font-size="10" fill="#00ff85" font-weight="bold">PL</text></svg>
+                            <span class="title-accent">Premier League</span>
+                        </h2>
+                        <div class="section-bar"></div>
+                    </div>
+                </div>
+                <div class="team-strip-wrapper">
+                    <div class="team-strip">
+                        <button class="team-chip active" onclick="filterByTeam(2, 'all', this)" data-cat="2" data-team="all">
+                            <svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="11" fill="#3d195b"/><text x="11" y="15" text-anchor="middle" font-size="8" fill="#00ff85" font-weight="bold">ALL</text></svg>
+                            Todos
+                        </button>
+                        <button class="team-chip" onclick="filterByTeam(2, 'Manchester United', this)" data-cat="2" data-team="Manchester United">
+                            <svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="11" fill="#DA291C"/><text x="11" y="15" text-anchor="middle" font-size="6" fill="#fff" font-weight="bold">MUN</text></svg>
+                            Man United
+                        </button>
+                        <button class="team-chip" onclick="filterByTeam(2, 'Arsenal', this)" data-cat="2" data-team="Arsenal">
+                            <svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="11" fill="#EF0107"/><text x="11" y="15" text-anchor="middle" font-size="6" fill="#fff" font-weight="bold">ARS</text></svg>
+                            Arsenal
+                        </button>
+                        <button class="team-chip" onclick="filterByTeam(2, 'Chelsea', this)" data-cat="2" data-team="Chelsea">
+                            <svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="11" fill="#034694"/><text x="11" y="15" text-anchor="middle" font-size="6" fill="#fff" font-weight="bold">CHE</text></svg>
+                            Chelsea
+                        </button>
+                        <button class="team-chip" onclick="filterByTeam(2, 'Tottenham', this)" data-cat="2" data-team="Tottenham">
+                            <svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="11" fill="#f5f5f5" stroke="#ccc" stroke-width="1"/><text x="11" y="15" text-anchor="middle" font-size="6" fill="#132257" font-weight="bold">TOT</text></svg>
+                            Tottenham
+                        </button>
+                        <button class="team-chip" onclick="filterByTeam(2, 'Newcastle', this)" data-cat="2" data-team="Newcastle">
+                            <svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="11" fill="#241F20"/><text x="11" y="15" text-anchor="middle" font-size="6" fill="#fff" font-weight="bold">NEW</text></svg>
+                            Newcastle
+                        </button>
+                    </div>
+                </div>
+                <div class="carousel-container">
+                    <button class="carousel-arrow prev" data-carousel="2"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6l6 6"/></svg></button>
+                    <div class="carousel" data-carousel="2"></div>
+                    <button class="carousel-arrow next" data-carousel="2"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6l-6 6"/></svg></button>
+                </div>
+            </div>
+
+            <div class="section-sep"></div>
+
+            <!-- LA LIGA -->
+            <div class="carousel-section">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">
+                            <svg viewBox="0 0 32 32" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="league-logo"><circle cx="16" cy="16" r="16" fill="#FF6B35"/><text x="16" y="21" text-anchor="middle" font-size="9" fill="#fff" font-weight="bold">LaLiga</text></svg>
+                            <span class="title-accent">La Liga</span>
+                        </h2>
+                        <div class="section-bar"></div>
+                    </div>
+                </div>
+                <div class="team-strip-wrapper">
+                    <div class="team-strip">
+                        <button class="team-chip active" onclick="filterByTeam(3, 'all', this)" data-cat="3" data-team="all">
+                            <svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="11" fill="#FF6B35"/><text x="11" y="15" text-anchor="middle" font-size="8" fill="#fff" font-weight="bold">ALL</text></svg>
+                            Todos
+                        </button>
+                        <button class="team-chip" onclick="filterByTeam(3, 'Atlético Madrid', this)" data-cat="3" data-team="Atlético Madrid">
+                            <svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="11" fill="#CB3524"/><text x="11" y="15" text-anchor="middle" font-size="6" fill="#fff" font-weight="bold">ATM</text></svg>
+                            Atlético
+                        </button>
+                        <button class="team-chip" onclick="filterByTeam(3, 'Sevilla', this)" data-cat="3" data-team="Sevilla">
+                            <svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="11" fill="#f5f5f5" stroke="#ccc" stroke-width="1"/><text x="11" y="15" text-anchor="middle" font-size="6" fill="#D4011D" font-weight="bold">SEV</text></svg>
+                            Sevilla
+                        </button>
+                        <button class="team-chip" onclick="filterByTeam(3, 'Real Betis', this)" data-cat="3" data-team="Real Betis">
+                            <svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="11" fill="#00954C"/><text x="11" y="15" text-anchor="middle" font-size="6" fill="#fff" font-weight="bold">BET</text></svg>
+                            Betis
+                        </button>
+                        <button class="team-chip" onclick="filterByTeam(3, 'Villarreal', this)" data-cat="3" data-team="Villarreal">
+                            <svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="11" fill="#F7D117"/><text x="11" y="15" text-anchor="middle" font-size="6" fill="#000" font-weight="bold">VIL</text></svg>
+                            Villarreal
+                        </button>
+                    </div>
+                </div>
+                <div class="carousel-container">
+                    <button class="carousel-arrow prev" data-carousel="3"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6l6 6"/></svg></button>
+                    <div class="carousel" data-carousel="3"></div>
+                    <button class="carousel-arrow next" data-carousel="3"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6l-6 6"/></svg></button>
+                </div>
+            </div>
+
+            <div class="section-sep"></div>
+
+            <!-- SERIE A -->
+            <div class="carousel-section">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">
+                            <svg viewBox="0 0 32 32" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="league-logo"><circle cx="16" cy="16" r="16" fill="#1B4EBF"/><text x="16" y="21" text-anchor="middle" font-size="9" fill="#fff" font-weight="bold">SA</text></svg>
+                            <span class="title-accent">Serie A</span>
+                        </h2>
+                        <div class="section-bar"></div>
+                    </div>
+                </div>
+                <div class="team-strip-wrapper">
+                    <div class="team-strip">
+                        <button class="team-chip active" onclick="filterByTeam(4, 'all', this)" data-cat="4" data-team="all">
+                            <svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="11" fill="#1B4EBF"/><text x="11" y="15" text-anchor="middle" font-size="8" fill="#fff" font-weight="bold">ALL</text></svg>
+                            Todos
+                        </button>
+                        <button class="team-chip" onclick="filterByTeam(4, 'Juventus', this)" data-cat="4" data-team="Juventus">
+                            <svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="11" fill="#1a1a1a" stroke="#fff" stroke-width="1"/><text x="11" y="15" text-anchor="middle" font-size="6" fill="#fff" font-weight="bold">JUV</text></svg>
+                            Juventus
+                        </button>
+                        <button class="team-chip" onclick="filterByTeam(4, 'AC Milan', this)" data-cat="4" data-team="AC Milan">
+                            <svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="11" fill="#FB090B"/><text x="11" y="15" text-anchor="middle" font-size="6" fill="#fff" font-weight="bold">MIL</text></svg>
+                            AC Milan
+                        </button>
+                        <button class="team-chip" onclick="filterByTeam(4, 'Inter Milan', this)" data-cat="4" data-team="Inter Milan">
+                            <svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="11" fill="#010E80"/><text x="11" y="15" text-anchor="middle" font-size="6" fill="#fff" font-weight="bold">INT</text></svg>
+                            Inter
+                        </button>
+                        <button class="team-chip" onclick="filterByTeam(4, 'Napoli', this)" data-cat="4" data-team="Napoli">
+                            <svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="11" fill="#12A0D7"/><text x="11" y="15" text-anchor="middle" font-size="6" fill="#fff" font-weight="bold">NAP</text></svg>
+                            Napoli
+                        </button>
+                    </div>
+                </div>
+                <div class="carousel-container">
+                    <button class="carousel-arrow prev" data-carousel="4"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6l6 6"/></svg></button>
+                    <div class="carousel" data-carousel="4"></div>
+                    <button class="carousel-arrow next" data-carousel="4"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6l-6 6"/></svg></button>
+                </div>
+            </div>
+
+            <div class="section-sep"></div>
+
+            <!-- BUNDESLIGA -->
+            <div class="carousel-section">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">
+                            <svg viewBox="0 0 32 32" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="league-logo"><circle cx="16" cy="16" r="16" fill="#D4011D"/><text x="16" y="21" text-anchor="middle" font-size="8" fill="#fff" font-weight="bold">BL</text></svg>
+                            <span class="title-accent">Bundesliga</span>
+                        </h2>
+                        <div class="section-bar"></div>
+                    </div>
+                </div>
+                <div class="team-strip-wrapper">
+                    <div class="team-strip">
+                        <button class="team-chip active" onclick="filterByTeam(5, 'all', this)" data-cat="5" data-team="all">
+                            <svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="11" fill="#D4011D"/><text x="11" y="15" text-anchor="middle" font-size="8" fill="#fff" font-weight="bold">ALL</text></svg>
+                            Todos
+                        </button>
+                        <button class="team-chip" onclick="filterByTeam(5, 'Bayern Munich', this)" data-cat="5" data-team="Bayern Munich">
+                            <svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="11" fill="#DC052D"/><text x="11" y="15" text-anchor="middle" font-size="6" fill="#fff" font-weight="bold">BAY</text></svg>
+                            Bayern
+                        </button>
+                        <button class="team-chip" onclick="filterByTeam(5, 'Borussia Dortmund', this)" data-cat="5" data-team="Borussia Dortmund">
+                            <svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="11" fill="#FDE100"/><text x="11" y="15" text-anchor="middle" font-size="6" fill="#000" font-weight="bold">BVB</text></svg>
+                            Dortmund
+                        </button>
+                        <button class="team-chip" onclick="filterByTeam(5, 'RB Leipzig', this)" data-cat="5" data-team="RB Leipzig">
+                            <svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="11" fill="#DD0741"/><text x="11" y="15" text-anchor="middle" font-size="6" fill="#fff" font-weight="bold">RBL</text></svg>
+                            Leipzig
+                        </button>
+                    </div>
+                </div>
+                <div class="carousel-container">
+                    <button class="carousel-arrow prev" data-carousel="5"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6l6 6"/></svg></button>
+                    <div class="carousel" data-carousel="5"></div>
+                    <button class="carousel-arrow next" data-carousel="5"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6l-6 6"/></svg></button>
+                </div>
+            </div>
+
+            <div class="section-sep"></div>
+
+            <!-- SELEÇÕES -->
+            <div class="carousel-section" id="selecoes">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">
+                            <svg viewBox="0 0 32 32" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="league-logo"><circle cx="16" cy="16" r="16" fill="#1a3a6b"/><text x="16" y="21" text-anchor="middle" font-size="8" fill="#fff" font-weight="bold">🌎</text></svg>
+                            <span class="title-accent">Seleções</span>
+                        </h2>
+                        <div class="section-bar"></div>
+                    </div>
+                </div>
+                <div class="team-strip-wrapper">
+                    <div class="team-strip">
+                        <button class="team-chip active" onclick="filterByTeam(6, 'all', this)" data-cat="6" data-team="all">
+                            🌎 Todas
+                        </button>
+                        <button class="team-chip" onclick="filterByTeam(6, 'Brasil', this)" data-cat="6" data-team="Brasil">
+                            🇧🇷 Brasil
+                        </button>
+                        <button class="team-chip" onclick="filterByTeam(6, 'Argentina', this)" data-cat="6" data-team="Argentina">
+                            🇦🇷 Argentina
+                        </button>
+                        <button class="team-chip" onclick="filterByTeam(6, 'França', this)" data-cat="6" data-team="França">
+                            🇫🇷 França
+                        </button>
+                        <button class="team-chip" onclick="filterByTeam(6, 'Alemanha', this)" data-cat="6" data-team="Alemanha">
+                            🇩🇪 Alemanha
+                        </button>
+                        <button class="team-chip" onclick="filterByTeam(6, 'Itália', this)" data-cat="6" data-team="Itália">
+                            🇮🇹 Itália
+                        </button>
+                        <button class="team-chip" onclick="filterByTeam(6, 'Espanha', this)" data-cat="6" data-team="Espanha">
+                            🇪🇸 Espanha
+                        </button>
+                    </div>
+                </div>
+                <div class="carousel-container">
+                    <button class="carousel-arrow prev" data-carousel="6"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6l6 6"/></svg></button>
+                    <div class="carousel" data-carousel="6"></div>
+                    <button class="carousel-arrow next" data-carousel="6"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6l-6 6"/></svg></button>
+                </div>
+            </div>
+
+            <div class="section-sep"></div>
+
+            <!-- LANÇAMENTOS -->
+            <div class="carousel-section" id="lancamentos">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">⚡ <span class="title-accent">Lançamentos</span></h2>
+                        <div class="section-bar"></div>
+                    </div>
+                </div>
+                <div class="carousel-container">
+                    <button class="carousel-arrow prev" data-carousel="7"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6l6 6"/></svg></button>
+                    <div class="carousel" data-carousel="7"></div>
+                    <button class="carousel-arrow next" data-carousel="7"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6l-6 6"/></svg></button>
+                </div>
+            </div>
+
+            <div class="section-sep"></div>
+
+            <!-- PROMOÇÕES -->
+            <div class="carousel-section" id="promocoes">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title" style="color:var(--red-promo)">🏷️ <span>Promoções</span></h2>
+                        <div class="section-bar" style="background:linear-gradient(90deg,var(--red-promo),var(--gold))"></div>
+                    </div>
+                    <a href="#" class="section-link" style="color:var(--red-promo)">Ver todas →</a>
+                </div>
+                <div class="carousel-container">
+                    <button class="carousel-arrow prev" data-carousel="8"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6l6 6"/></svg></button>
+                    <div class="carousel" data-carousel="8"></div>
+                    <button class="carousel-arrow next" data-carousel="8"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6l-6 6"/></svg></button>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- ── FOOTER ── -->
+    <footer id="contato">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-brand-logo">
+                    <div class="footer-logo-text">Esmeraldo<sup>®</sup> Store</div>
+                </div>
+                <p class="footer-desc">A melhor loja de camisas de futebol importadas do Brasil. Qualidade premium, personalização e atendimento rápido.</p>
+                <div class="footer-social">
+                    <a href="https://instagram.com/esmeraldo_menu" target="_blank" class="social-btn" title="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </a>
+                    <a href="#" id="footerWhatsapp" class="social-btn" title="WhatsApp">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Links Rápidos</h4>
+                <ul>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#categorias">Todos os Produtos</a></li>
+                    <li><a href="#lancamentos">Lançamentos</a></li>
+                    <li><a href="#promocoes">Promoções</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Categorias</h4>
+                <ul>
+                    <li><a href="#brasileirao">Brasileirão</a></li>
+                    <li><a href="#europeus">Premier League</a></li>
+                    <li><a href="#europeus">La Liga</a></li>
+                    <li><a href="#selecoes">Seleções</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Atendimento</h4>
+                <ul>
+                    <li><a href="https://wa.me/5511981019899" target="_blank">WhatsApp</a></li>
+                    <li><a href="https://instagram.com/esmeraldo_menu" target="_blank">@esmeraldo_menu</a></li>
+                    <li><a href="#">Política de Trocas</a></li>
+                    <li><a href="#">Envio e Prazo</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="footer-bottom-text">© 2025 <span>Esmeraldo Store®</span> — Todos os direitos reservados.</span>
+            <span class="footer-bottom-text">Desenvolvido por <span>Esmeraldo</span> | @esmeraldo_menu</span>
+        </div>
+    </footer>
+
+    <script>
+        // ====== DADOS DOS PRODUTOS ======
+        const products = {
+            0: [ // Mais Vendidas
+                { id: 1,  name: 'Flamengo 2024',      color: '#C8102E', price: 189.90, category: 0, badges: ['Mais Vendida', 'Importada'], rating: 5.0, reviews: 218, teamKey: 'Flamengo' },
+                { id: 2,  name: 'Palmeiras 2024',     color: '#006400', price: 189.90, category: 0, badges: ['Mais Vendida', 'Importada'], rating: 4.8, reviews: 196, teamKey: 'Palmeiras' },
+                { id: 3,  name: 'Real Madrid',        color: '#f5f5f5', price: 199.90, category: 0, badges: ['Importada'], rating: 4.9, reviews: 312, teamKey: 'Real Madrid' },
+                { id: 4,  name: 'Barcelona 2024',     color: '#003DA5', price: 149.90, original: 199.90, category: 0, badges: ['Promoção', 'Importada'], rating: 4.7, reviews: 143, teamKey: 'Barcelona' },
+                { id: 5,  name: 'Manchester City',    color: '#6CABDD', price: 199.90, category: 0, badges: ['Importada'], rating: 4.8, reviews: 167, teamKey: 'Manchester City' },
+                { id: 6,  name: 'Liverpool',          color: '#C8102E', price: 189.90, category: 0, badges: ['Mais Vendida', 'Importada'], rating: 5.0, reviews: 284, teamKey: 'Liverpool' },
+            ],
+            1: [ // Brasileirão
+                { id: 7,  name: 'Botafogo 2024',      color: '#1a1a1a', price: 179.90, category: 1, badges: ['Importada'], rating: 4.7, reviews: 89, teamKey: 'Botafogo' },
+                { id: 8,  name: 'Corinthians 2024',   color: '#f5f5f5', price: 179.90, category: 1, badges: ['Importada'], rating: 4.8, reviews: 201, teamKey: 'Corinthians' },
+                { id: 9,  name: 'São Paulo 2024',     color: '#C8102E', price: 179.90, category: 1, badges: ['Novo', 'Importada'], rating: 4.6, reviews: 54, teamKey: 'São Paulo' },
+                { id: 10, name: 'Santos 2024',        color: '#f0f0f0', price: 179.90, category: 1, badges: ['Importada'], rating: 4.5, reviews: 77, teamKey: 'Santos' },
+                { id: 11, name: 'Athletico-PR',       color: '#C8102E', price: 179.90, category: 1, badges: ['Importada'], rating: 4.6, reviews: 43, teamKey: 'Athletico-PR' },
+                { id: 12, name: 'Internacional',      color: '#C8102E', price: 179.90, category: 1, badges: ['Importada'], rating: 4.7, reviews: 92, teamKey: 'Internacional' },
+            ],
+            2: [ // Premier League
+                { id: 13, name: 'Manchester United',  color: '#DA291C', price: 199.90, category: 2, badges: ['Importada'], rating: 4.9, reviews: 178, teamKey: 'Manchester United' },
+                { id: 14, name: 'Arsenal',            color: '#EF0107', price: 199.90, category: 2, badges: ['Importada'], rating: 4.8, reviews: 156, teamKey: 'Arsenal' },
+                { id: 15, name: 'Chelsea',            color: '#034694', price: 199.90, category: 2, badges: ['Novo', 'Importada'], rating: 4.7, reviews: 99, teamKey: 'Chelsea' },
+                { id: 16, name: 'Tottenham',          color: '#f5f5f5', price: 199.90, category: 2, badges: ['Importada'], rating: 4.6, reviews: 88, teamKey: 'Tottenham' },
+                { id: 17, name: 'Newcastle',          color: '#241F20', price: 199.90, category: 2, badges: ['Importada'], rating: 4.7, reviews: 64, teamKey: 'Newcastle' },
+                { id: 18, name: 'Brighton',           color: '#0057B8', price: 189.90, category: 2, badges: ['Importada'], rating: 4.5, reviews: 41, teamKey: 'Brighton' },
+            ],
+            3: [ // La Liga
+                { id: 19, name: 'Atlético Madrid',    color: '#CB3524', price: 199.90, category: 3, badges: ['Importada'], rating: 4.8, reviews: 121, teamKey: 'Atlético Madrid' },
+                { id: 20, name: 'Sevilla',            color: '#D4011D', price: 189.90, category: 3, badges: ['Importada'], rating: 4.6, reviews: 72, teamKey: 'Sevilla' },
+                { id: 21, name: 'Real Betis',         color: '#00954C', price: 189.90, category: 3, badges: ['Importada'], rating: 4.7, reviews: 58, teamKey: 'Real Betis' },
+                { id: 22, name: 'Valencia',           color: '#f5f5f5', price: 189.90, category: 3, badges: ['Importada'], rating: 4.5, reviews: 49, teamKey: 'Valencia' },
+                { id: 23, name: 'Villarreal',         color: '#F7D117', price: 139.90, original: 189.90, category: 3, badges: ['Promoção', 'Importada'], rating: 4.6, reviews: 67, teamKey: 'Villarreal' },
+                { id: 24, name: 'Mallorca',           color: '#C8102E', price: 179.90, category: 3, badges: ['Importada'], rating: 4.4, reviews: 33, teamKey: 'Mallorca' },
+            ],
+            4: [ // Serie A
+                { id: 25, name: 'Juventus',           color: '#1a1a1a', price: 209.90, category: 4, badges: ['Importada'], rating: 4.9, reviews: 203, teamKey: 'Juventus' },
+                { id: 26, name: 'AC Milan',           color: '#FB090B', price: 199.90, category: 4, badges: ['Importada'], rating: 4.8, reviews: 177, teamKey: 'AC Milan' },
+                { id: 27, name: 'Inter Milan',        color: '#010E80', price: 199.90, category: 4, badges: ['Importada'], rating: 4.7, reviews: 145, teamKey: 'Inter Milan' },
+                { id: 28, name: 'AS Roma',            color: '#8B0000', price: 189.90, category: 4, badges: ['Importada'], rating: 4.6, reviews: 88, teamKey: 'AS Roma' },
+                { id: 29, name: 'Napoli',             color: '#12A0D7', price: 189.90, category: 4, badges: ['Novo', 'Importada'], rating: 4.7, reviews: 66, teamKey: 'Napoli' },
+                { id: 30, name: 'Lazio',              color: '#87CEEB', price: 189.90, category: 4, badges: ['Importada'], rating: 4.5, reviews: 52, teamKey: 'Lazio' },
+            ],
+            5: [ // Bundesliga
+                { id: 31, name: 'Bayern Munich',      color: '#DC052D', price: 219.90, category: 5, badges: ['Importada'], rating: 4.9, reviews: 267, teamKey: 'Bayern Munich' },
+                { id: 32, name: 'Borussia Dortmund',  color: '#FDE100', price: 199.90, category: 5, badges: ['Importada'], rating: 4.8, reviews: 189, teamKey: 'Borussia Dortmund' },
+                { id: 33, name: 'RB Leipzig',         color: '#DD0741', price: 189.90, category: 5, badges: ['Importada'], rating: 4.6, reviews: 74, teamKey: 'RB Leipzig' },
+                { id: 34, name: "Borussia M'gladbach",color: '#1C4A2E', price: 189.90, category: 5, badges: ['Importada'], rating: 4.5, reviews: 41, teamKey: "Borussia M'gladbach" },
+                { id: 35, name: 'Eintracht Frankfurt', color:'#E1000F', price: 179.90, category: 5, badges: ['Importada'], rating: 4.6, reviews: 55, teamKey: 'Eintracht Frankfurt' },
+                { id: 36, name: 'VfL Wolfsburg',      color: '#65B32E', price: 179.90, category: 5, badges: ['Importada'], rating: 4.4, reviews: 38, teamKey: 'VfL Wolfsburg' },
+            ],
+            6: [ // Seleções
+                { id: 37, name: 'Brasil 2024',        color: '#009C3B', price: 229.90, category: 6, badges: ['Mais Vendida', 'Importada'], rating: 5.0, reviews: 412, teamKey: 'Brasil' },
+                { id: 38, name: 'Argentina 2024',     color: '#74ACDF', price: 229.90, category: 6, badges: ['Mais Vendida', 'Importada'], rating: 4.9, reviews: 389, teamKey: 'Argentina' },
+                { id: 39, name: 'França',             color: '#002395', price: 219.90, category: 6, badges: ['Importada'], rating: 4.8, reviews: 156, teamKey: 'França' },
+                { id: 40, name: 'Alemanha',           color: '#464646', price: 219.90, category: 6, badges: ['Novo', 'Importada'], rating: 4.7, reviews: 98, teamKey: 'Alemanha' },
+                { id: 41, name: 'Itália',             color: '#003399', price: 219.90, category: 6, badges: ['Importada'], rating: 4.8, reviews: 134, teamKey: 'Itália' },
+                { id: 42, name: 'Espanha',            color: '#AA151B', price: 219.90, category: 6, badges: ['Importada'], rating: 4.7, reviews: 112, teamKey: 'Espanha' },
+            ],
+            7: [ // Lançamentos
+                { id: 43, name: 'Real Madrid 2024/25',color: '#f5f5f5', price: 249.90, category: 7, badges: ['Novo', 'Importada'], rating: 5.0, reviews: 45, teamKey: 'Real Madrid' },
+                { id: 44, name: 'PSG 2024/25',        color: '#004170', price: 249.90, category: 7, badges: ['Novo', 'Importada'], rating: 4.8, reviews: 38, teamKey: 'PSG' },
+                { id: 45, name: 'Bayern 2024/25',     color: '#DC052D', price: 249.90, category: 7, badges: ['Novo', 'Importada'], rating: 4.9, reviews: 52, teamKey: 'Bayern Munich' },
+                { id: 46, name: 'Flamengo 2024/25',   color: '#C8102E', price: 219.90, category: 7, badges: ['Novo', 'Importada'], rating: 4.8, reviews: 61, teamKey: 'Flamengo' },
+                { id: 47, name: 'Palmeiras 2024/25',  color: '#006400', price: 219.90, category: 7, badges: ['Novo', 'Importada'], rating: 4.7, reviews: 44, teamKey: 'Palmeiras' },
+                { id: 48, name: 'Man City 2024/25',   color: '#6CABDD', price: 249.90, category: 7, badges: ['Novo', 'Importada'], rating: 4.9, reviews: 37, teamKey: 'Manchester City' },
+            ],
+            8: [ // Promoções
+                { id: 49, name: 'Liverpool Outlet',   color: '#C8102E', price: 119.90, original: 189.90, category: 8, badges: ['Promoção', 'Importada'], rating: 4.7, reviews: 203, teamKey: 'Liverpool' },
+                { id: 50, name: 'Chelsea Outlet',     color: '#034694', price: 129.90, original: 199.90, category: 8, badges: ['Promoção', 'Importada'], rating: 4.6, reviews: 167, teamKey: 'Chelsea' },
+                { id: 51, name: 'Barcelona Outlet',   color: '#003DA5', price: 139.90, original: 199.90, category: 8, badges: ['Promoção', 'Importada'], rating: 4.8, reviews: 245, teamKey: 'Barcelona' },
+                { id: 52, name: 'Juventus Outlet',    color: '#1a1a1a', price: 149.90, original: 209.90, category: 8, badges: ['Promoção', 'Importada'], rating: 4.7, reviews: 189, teamKey: 'Juventus' },
+                { id: 53, name: 'Villarreal Outlet',  color: '#F7D117', price: 119.90, original: 189.90, category: 8, badges: ['Promoção', 'Importada'], rating: 4.5, reviews: 98, teamKey: 'Villarreal' },
+                { id: 54, name: 'Napoli Outlet',      color: '#12A0D7', price: 129.90, original: 189.90, category: 8, badges: ['Promoção', 'Importada'], rating: 4.6, reviews: 134, teamKey: 'Napoli' },
+            ]
+        };
+
+        // ====== ESTADO ======
+        let cart = [];
+        let currentProduct = null;
+
+        // ====== DOM ======
+        const cartToggle   = document.getElementById('cartToggle');
+        const cartSidebar  = document.getElementById('cartSidebar');
+        const cartClose    = document.getElementById('cartClose');
+        const cartItems    = document.getElementById('cartItems');
+        const cartCount    = document.getElementById('cartCount');
+        const cartTotalPrice = document.getElementById('cartTotalPrice');
+        const productModal = document.getElementById('productModal');
+        const modalClose   = document.getElementById('modalClose');
+        const modalContent = document.getElementById('modalContent');
+        const checkoutBtn  = document.getElementById('checkoutBtn');
+        const menuToggle   = document.getElementById('menuToggle');
+        const nav          = document.getElementById('nav');
+        const zoomOverlay  = document.getElementById('zoomOverlay');
+        const waFloat      = document.getElementById('waFloat');
+
+        // ====== CARRINHO ======
+        cartToggle.addEventListener('click', () => cartSidebar.classList.add('active'));
+        cartClose.addEventListener('click',  () => cartSidebar.classList.remove('active'));
+        modalClose.addEventListener('click', () => productModal.classList.remove('active'));
+        menuToggle.addEventListener('click', () => nav.classList.toggle('active'));
+
+        // Fechar modal ao clicar fora
+        productModal.addEventListener('click', (e) => {
+            if (e.target === productModal) productModal.classList.remove('active');
+        });
+
+        // WhatsApp flutuante
+        waFloat.addEventListener('click', () => {
+            const url = `https://wa.me/5511981019899?text=${encodeURIComponent('Olá! Gostaria de saber mais sobre as camisas da Esmeraldo Store!')}`;
+            window.open(url, '_blank');
+        });
+        document.getElementById('heroWaBtn').addEventListener('click', () => {
+            const url = `https://wa.me/5511981019899?text=${encodeURIComponent('Olá! Gostaria de saber mais sobre as camisas da Esmeraldo Store!')}`;
+            window.open(url, '_blank');
+        });
+
+        // ====== RENDERIZAR CARDS ======
+        function getTeamShirtSVG(product) {
+            const isDark = isColorDark(product.color);
+            const textColor = isDark ? 'rgba(255,255,255,0.9)' : 'rgba(0,0,0,0.7)';
+            const strokeColor = isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.15)';
+            const abbr = product.name.split(' ')[0].substring(0,3).toUpperCase();
+
+            return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 220" width="130" height="130">
+                <defs>
+                    <linearGradient id="g${product.id}" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:${product.color};stop-opacity:1"/>
+                        <stop offset="100%" style="stop-color:${darken(product.color, 20)};stop-opacity:1"/>
+                    </linearGradient>
+                    <filter id="s${product.id}"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="rgba(0,0,0,0.5)"/></filter>
+                </defs>
+                <path d="M60,40 L30,70 L10,65 L20,110 L40,108 L40,200 L160,200 L160,108 L180,110 L190,65 L170,70 L140,40" fill="url(#g${product.id})" filter="url(#s${product.id})"/>
+                <path d="M75,40 Q100,55 125,40 L120,30 Q100,42 80,30 Z" fill="rgba(255,255,255,0.3)"/>
+                <path d="M30,70 L10,65 L20,110 L40,108 L40,75Z" fill="rgba(0,0,0,0.12)"/>
+                <path d="M170,70 L190,65 L180,110 L160,108 L160,75Z" fill="rgba(0,0,0,0.12)"/>
+                <text x="100" y="155" text-anchor="middle" fill="${textColor}" font-size="28" font-weight="900" font-family="Arial">${abbr}</text>
+            </svg>`;
+        }
+
+        function isColorDark(hex) {
+            if (!hex || hex.length < 4) return true;
+            const c = hex.replace('#','');
+            const r = parseInt(c.substr(0,2),16);
+            const g = parseInt(c.substr(2,2),16);
+            const b = parseInt(c.substr(4,2),16);
+            return (r*299 + g*587 + b*114) / 1000 < 128;
+        }
+
+        function darken(hex, amount) {
+            try {
+                const c = hex.replace('#','');
+                const r = Math.max(0, parseInt(c.substr(0,2),16) - amount);
+                const g = Math.max(0, parseInt(c.substr(2,2),16) - amount);
+                const b = Math.max(0, parseInt(c.substr(4,2),16) - amount);
+                return '#' + [r,g,b].map(x => x.toString(16).padStart(2,'0')).join('');
+            } catch(e) { return hex; }
+        }
+
+        function getBadgeClass(badge) {
+            const map = { 'Mais Vendida':'badge-mais-vendida', 'Novo':'badge-novo', 'Promoção':'badge-promocao', 'Importada':'badge-importada' };
+            return map[badge] || 'badge-importada';
+        }
+
+        function getStars(rating) {
+            const full = Math.floor(rating);
+            return '★'.repeat(full) + (rating % 1 >= 0.5 ? '½' : '') + '☆'.repeat(5 - Math.ceil(rating));
+        }
+
+        function getDiscount(price, original) {
+            return Math.round((1 - price/original) * 100);
+        }
+
+        function buildProductCard(product) {
+            const disc = product.original ? `<span class="price-off">-${getDiscount(product.price, product.original)}%</span>` : '';
+            const oldP = product.original ? `<span class="price-old">R$ ${product.original.toFixed(2).replace('.',',')}</span>` : '';
+            const badges = product.badges.map(b =>
+                `<span class="badge ${getBadgeClass(b)}">${b}</span>`
+            ).join('');
+
+            return `
+            <div class="product-card" onclick="openProductDetail(${product.id})">
+                <div class="product-image">
+                    <div class="product-image-bg" style="background:radial-gradient(circle at 50% 40%, ${product.color}22 0%, transparent 70%)"></div>
+                    <div class="product-badges">${badges}</div>
+                    <div class="product-img-svg">${getTeamShirtSVG(product)}</div>
+                    <div class="product-team-badge">
+                        <svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="11" fill="${product.color}"/><text x="11" y="15" text-anchor="middle" font-size="6" fill="${isColorDark(product.color)?'#fff':'#000'}" font-weight="bold">${product.name.split(' ')[0].substring(0,3).toUpperCase()}</text></svg>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-rating">
+                        <span class="stars">${'★'.repeat(Math.floor(product.rating))}</span>
+                        <span class="rating-count">(${product.reviews})</span>
+                    </div>
+                    <div class="product-name">${product.name}</div>
+                    <div class="product-price">
+                        <span class="price-current">R$ ${product.price.toFixed(2).replace('.',',')}</span>
+                        ${oldP}${disc}
+                    </div>
+                    <div class="product-btns">
+                        <button class="btn-add" onclick="event.stopPropagation(); quickAddToCart(${product.id})">Comprar</button>
+                        <button class="btn-detail" onclick="event.stopPropagation(); openProductDetail(${product.id})" title="Ver detalhes">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>`;
+        }
+
+        function renderCarousels() {
+            Object.keys(products).forEach(category => {
+                const carousel = document.querySelector(`[data-carousel="${category}"]`);
+                if (!carousel) return;
+                carousel.innerHTML = products[category].map(p => buildProductCard(p)).join('');
+            });
+
+            document.querySelectorAll('.carousel-arrow').forEach(arrow => {
+                arrow.addEventListener('click', handleCarouselScroll);
+            });
+        }
+
+        // ====== FILTRO POR TIME ======
+        function filterByTeam(catId, teamName, btn) {
+            // Update active chip
+            const strip = btn.closest('.team-strip');
+            if (strip) {
+                strip.querySelectorAll('.team-chip').forEach(c => c.classList.remove('active'));
+                btn.classList.add('active');
+            }
+
+            const carousel = document.querySelector(`[data-carousel="${catId}"]`);
+            if (!carousel) return;
+
+            const list = teamName === 'all'
+                ? products[catId]
+                : products[catId].filter(p => p.name.includes(teamName) || (p.teamKey && p.teamKey.includes(teamName)));
+
+            carousel.innerHTML = list.length > 0
+                ? list.map(p => buildProductCard(p)).join('')
+                : `<div style="padding:2rem;color:var(--text-secondary);font-size:0.9rem;">Nenhum produto encontrado para este filtro.</div>`;
+        }
+
+        // ====== CAROUSEL SCROLL ======
+        function handleCarouselScroll(e) {
+            const btn = e.currentTarget;
+            const isNext = btn.classList.contains('next');
+            const idx = btn.getAttribute('data-carousel');
+            const carousel = document.querySelector(`.carousel[data-carousel="${idx}"]`);
+            if (carousel) carousel.scrollLeft += isNext ? 280 : -280;
+        }
+
+        // ====== TOUCH DRAG ======
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.carousel').forEach(carousel => {
+                let isDown = false, startX, scrollLeft;
+                carousel.addEventListener('mousedown', e => { isDown = true; startX = e.pageX - carousel.offsetLeft; scrollLeft = carousel.scrollLeft; carousel.style.cursor='grabbing'; });
+                carousel.addEventListener('mouseleave', () => { isDown = false; carousel.style.cursor=''; });
+                carousel.addEventListener('mouseup', () => { isDown = false; carousel.style.cursor=''; });
+                carousel.addEventListener('mousemove', e => { if (!isDown) return; e.preventDefault(); const x = e.pageX - carousel.offsetLeft; carousel.scrollLeft = scrollLeft - (x - startX); });
+                carousel.addEventListener('touchstart', e => { startX = e.touches[0].pageX - carousel.offsetLeft; scrollLeft = carousel.scrollLeft; }, {passive:true});
+                carousel.addEventListener('touchmove', e => { const x = e.touches[0].pageX - carousel.offsetLeft; carousel.scrollLeft = scrollLeft - (x - startX) * 1.5; }, {passive:true});
+            });
+        });
+
+        // ====== QUICK ADD TO CART ======
+        function quickAddToCart(productId) {
+            const product = findProduct(productId);
+            if (!product) return;
+            cart.push({ ...product, size: 'M', color: 'Padrão', personalized: false, quantity: 1, customName: '', customNumber: '' });
+            updateCart();
+            showNotification(`✓ ${product.name} adicionado!`);
+        }
+
+        // ====== ABRIR DETALHE ======
+        function openProductDetail(productId) {
+            const product = findProduct(productId);
+            if (!product) return;
+            currentProduct = product;
+
+            const colors = [
+                { name: 'Titular', hex: product.color },
+                { name: 'Branco', hex: '#FFFFFF' },
+                { name: 'Preto', hex: '#111111' },
+                { name: 'Alternativo', hex: '#555555' },
+            ];
+            const sizes = ['PP', 'P', 'M', 'G', 'GG', 'XG'];
+            const disc = product.original ? `<span style="font-size:1rem;color:var(--red-promo);background:rgba(255,56,56,0.12);padding:0.25rem 0.6rem;border-radius:6px;margin-left:0.5rem;">-${getDiscount(product.price, product.original)}%</span>` : '';
+            const oldP = product.original ? `<div style="font-size:1rem;color:var(--text-muted);text-decoration:line-through;margin-bottom:0.25rem;">De: R$ ${product.original.toFixed(2).replace('.',',')}</div>` : '';
+
+            modalContent.innerHTML = `
+            <div class="product-detail">
+                <div class="product-gallery">
+                    <div class="gallery-main" onclick="toggleZoom()" style="background:radial-gradient(circle at 50% 40%, ${product.color}22 0%, transparent 70%);">
+                        ${getTeamShirtSVG({...product, name: product.name})}
+                    </div>
+                    <div class="gallery-thumbs">
+                        ${[1,2,3,4].map((i,idx) => `
+                        <div class="thumb ${idx===0?'active':''}" style="background:radial-gradient(circle, ${product.color}18, transparent);">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 220" width="48" height="48">
+                                <path d="M60,40 L30,70 L10,65 L20,110 L40,108 L40,200 L160,200 L160,108 L180,110 L190,65 L170,70 L140,40" fill="${product.color}" opacity="${1 - idx*0.12}"/>
+                            </svg>
+                        </div>`).join('')}
+                    </div>
+                </div>
+                <div class="product-details">
+                    <div>
+                        <div style="display:flex;gap:0.4rem;margin-bottom:0.5rem;flex-wrap:wrap;">
+                            ${product.badges.map(b => `<span class="badge ${getBadgeClass(b)}">${b}</span>`).join('')}
+                        </div>
+                        <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:1.9rem;font-weight:900;text-transform:uppercase;line-height:1.1;margin-bottom:0.5rem;">${product.name}</h2>
+                        <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:1rem;">
+                            <span style="color:var(--gold);font-size:1rem;">${'★'.repeat(Math.floor(product.rating))}</span>
+                            <span style="font-size:0.85rem;color:var(--text-secondary);">${product.rating} (${product.reviews} avaliações)</span>
+                        </div>
+                    </div>
+                    <div>
+                        ${oldP}
+                        <div class="price-display">R$ ${product.price.toFixed(2).replace('.',',')}${disc}</div>
+                        <div style="font-size:0.8rem;color:var(--text-secondary);margin-top:0.25rem;">ou 3x de R$ ${(product.price/3).toFixed(2).replace('.',',')} sem juros</div>
+                    </div>
+                    <div class="detail-group">
+                        <label class="detail-label">Tamanho</label>
+                        <div class="size-options">
+                            ${sizes.map(s => `<button class="size-btn ${s==='M'?'active':''}" onclick="updateSize(this,'${s}')">${s}</button>`).join('')}
+                        </div>
+                    </div>
+                    <div class="detail-group">
+                        <label class="detail-label">Cor Disponível</label>
+                        <div class="color-options">
+                            ${colors.map((c,i) => `<button class="color-btn ${i===0?'active':''}" style="background:${c.hex};${c.hex==='#FFFFFF'?'border-color:#ccc;':''}" title="${c.name}" onclick="updateColor(this)"></button>`).join('')}
+                        </div>
+                    </div>
+                    <div class="detail-group">
+                        <label class="detail-label">Nome Personalizado (Opcional)</label>
+                        <input type="text" placeholder="Ex: Vinicius Jr." id="customName" maxlength="20">
+                    </div>
+                    <div class="detail-group" style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+                        <div>
+                            <label class="detail-label">Número (Opcional)</label>
+                            <input type="number" placeholder="0-99" id="customNumber" min="0" max="99">
+                        </div>
+                        <div>
+                            <label class="detail-label">Quantidade</label>
+                            <input type="number" value="1" min="1" max="10" id="quantity" style="max-width:100%;">
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn-secondary" onclick="addToCartFromModal()">+ Carrinho</button>
+                        <button class="btn-primary-modal" onclick="checkoutFromModal()">Comprar Agora</button>
+                    </div>
+                    <div style="font-size:0.78rem;color:var(--text-secondary);display:flex;align-items:center;gap:0.4rem;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        Compra segura · Qualidade garantida · Suporte via WhatsApp
+                    </div>
+                </div>
+            </div>`;
+
+            productModal.classList.add('active');
+        }
+
+        function toggleZoom() {
+            zoomOverlay.classList.toggle('active');
+        }
+        zoomOverlay.addEventListener('click', () => zoomOverlay.classList.remove('active'));
+
+        function updateSize(btn, size) {
+            document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+        function updateColor(btn) {
+            document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+
+        // ====== ADICIONAR DO MODAL ======
+        function addToCartFromModal() {
+            const customName   = document.getElementById('customName')?.value || '';
+            const customNumber = document.getElementById('customNumber')?.value || '';
+            const quantity     = parseInt(document.getElementById('quantity')?.value) || 1;
+            const selectedSize = document.querySelector('.size-btn.active')?.textContent || 'M';
+            const selectedColor = document.querySelector('.color-btn.active')?.style.background || 'Padrão';
+
+            for (let i = 0; i < quantity; i++) {
+                cart.push({ ...currentProduct, size: selectedSize, color: selectedColor, customName, customNumber, quantity: 1 });
+            }
+            updateCart();
+            productModal.classList.remove('active');
+            cartSidebar.classList.add('active');
+            showNotification(`✓ ${quantity} item(ns) adicionado(s)!`);
+        }
+
+        function checkoutFromModal() {
+            addToCartFromModal();
+            setTimeout(() => proceedCheckout(), 400);
+        }
+
+        // ====== ATUALIZAR CARRINHO ======
+        function updateCart() {
+            cartCount.textContent = cart.length;
+            if (cart.length === 0) {
+                cartItems.innerHTML = `<div class="empty-cart"><div class="empty-cart-icon">🛒</div><p>Seu carrinho está vazio</p></div>`;
+                cartTotalPrice.textContent = 'R$ 0,00';
+                return;
+            }
+            cartItems.innerHTML = cart.map((item, index) => `
+            <div class="cart-item">
+                <div class="cart-item-image">
+                    <svg viewBox="0 0 200 220" width="44" height="44" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M60,40 L30,70 L10,65 L20,110 L40,108 L40,200 L160,200 L160,108 L180,110 L190,65 L170,70 L140,40" fill="${item.color || '#333'}"/>
+                    </svg>
+                </div>
+                <div class="cart-item-details">
+                    <div class="cart-item-name">${item.name}</div>
+                    <div class="cart-item-spec">Tamanho: ${item.size}</div>
+                    ${item.customName ? `<div class="cart-item-spec">Nome: ${item.customName}</div>` : ''}
+                    ${item.customNumber ? `<div class="cart-item-spec">Número: ${item.customNumber}</div>` : ''}
+                    <div class="cart-item-price">R$ ${item.price.toFixed(2).replace('.',',')}</div>
+                </div>
+                <button class="cart-item-remove" onclick="removeFromCart(${index})" title="Remover">✕</button>
+            </div>`).join('');
+
+            const total = cart.reduce((s, i) => s + i.price, 0);
+            cartTotalPrice.textContent = `R$ ${total.toFixed(2).replace('.',',')}`;
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        // ====== CHECKOUT ======
+        checkoutBtn.addEventListener('click', proceedCheckout);
+        document.getElementById('footerWhatsapp').addEventListener('click', proceedCheckout);
+
+        function proceedCheckout() {
+            if (cart.length === 0) { alert('Seu carrinho está vazio!'); return; }
+            let msg = '*Meu Pedido — Esmeraldo Store®*\n\n';
+            msg += '*Produtos:*\n';
+            cart.forEach((item, i) => {
+                msg += `\n${i+1}. ${item.name}\n`;
+                msg += `   Tamanho: ${item.size}\n`;
+                msg += `   Preço: R$ ${item.price.toFixed(2).replace('.',',')}\n`;
+                if (item.customName)   msg += `   Nome: ${item.customName}\n`;
+                if (item.customNumber) msg += `   Número: ${item.customNumber}\n`;
+            });
+            const total = cart.reduce((s,i) => s+i.price, 0);
+            msg += `\n*TOTAL: R$ ${total.toFixed(2).replace('.',',')}*\n`;
+            msg += '\n*Gostaria de confirmar este pedido!*';
+            window.open(`https://wa.me/5511981019899?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        // ====== UTILS ======
+        function findProduct(productId) {
+            for (let cat in products) {
+                const p = products[cat].find(p => p.id === productId);
+                if (p) return p;
+            }
+            return null;
+        }
+
+        function showNotification(message) {
+            const old = document.querySelector('.notification');
+            if (old) old.remove();
+            const n = document.createElement('div');
+            n.className = 'notification';
+            n.innerHTML = `<span class="notif-check">✓</span> ${message}`;
+            document.body.appendChild(n);
+            setTimeout(() => { n.style.opacity='0'; n.style.transform='translateY(10px)'; n.style.transition='all 0.3s'; setTimeout(() => n.remove(), 300); }, 2500);
+        }
+
+        // ====== BUSCA ======
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase().trim();
+            if (!term) { renderCarousels(); return; }
+            Object.keys(products).forEach(cat => {
+                const carousel = document.querySelector(`[data-carousel="${cat}"]`);
+                if (!carousel) return;
+                const filtered = products[cat].filter(p => p.name.toLowerCase().includes(term));
+                carousel.innerHTML = filtered.length > 0
+                    ? filtered.map(p => buildProductCard(p)).join('')
+                    : `<div style="padding:1.5rem;color:var(--text-secondary);font-size:0.9rem;">Nenhum resultado para "${term}"</div>`;
+            });
+        });
+
+        // ====== INIT ======
+        renderCarousels();
+        updateCart();
+
+        // Bloquear seleção de texto ao clicar
+        document.addEventListener('selectstart', (e) => {
+            if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+                e.preventDefault();
+            }
+        });
+
+        // Rastreamento de visitas
+        function rastrearVisita() {
+            const hoje = new Date().toISOString().split('T')[0];
+            let stats = JSON.parse(localStorage.getItem('esmeraldoStats')) || {
+                totalVisitas: 0,
+                visitasPorDia: {},
+                produtosVisualizados: {},
+                categoriasVisitadas: {},
+                ultimasVisitas: []
+            };
+
+            stats.totalVisitas++;
+            stats.visitasPorDia[hoje] = (stats.visitasPorDia[hoje] || 0) + 1;
+
+            const ultimasVisitas = stats.ultimasVisitas || [];
+            ultimasVisitas.unshift({
+                hora: new Date().toLocaleTimeString('pt-BR'),
+                data: new Date().toLocaleDateString('pt-BR'),
+                pagina: 'Home'
+            });
+            stats.ultimasVisitas = ultimasVisitas.slice(0, 50);
+
+            localStorage.setItem('esmeraldoStats', JSON.stringify(stats));
+            return stats;
+        }
+
+        function rastrearProdutoVisualizado(nomeDoTempo, categoria) {
+            let stats = JSON.parse(localStorage.getItem('esmeraldoStats')) || {
+                totalVisitas: 0,
+                visitasPorDia: {},
+                produtosVisualizados: {},
+                categoriasVisitadas: {},
+                ultimasVisitas: []
+            };
+
+            stats.produtosVisualizados[nomeDoTempo] = (stats.produtosVisualizados[nomeDoTempo] || 0) + 1;
+            stats.categoriasVisitadas[categoria] = (stats.categoriasVisitadas[categoria] || 0) + 1;
+
+            localStorage.setItem('esmeraldoStats', JSON.stringify(stats));
+        }
+
+        // Rastrear visita ao carregar o site
+        rastrearVisita();
+
+        // ====== VARIÁVEIS DO PAINEL ADM ======
+        let clicksNoLogo = 0;
+        let editandoIdAdm = null;
+        let fotosUploadadas = [];
+
+        // Rastrear cliques em produtos
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('.product-card')) {
+                const card = e.target.closest('.product-card');
+                const nomeProduto = card.querySelector('.product-name')?.textContent || 'Desconhecido';
+                const categoryElement = card.querySelector('[data-carousel]');
+                rastrearProdutoVisualizado(nomeProduto, 'Geral');
+            }
+        });
+
+        // Adicionar evento de clique ao logo
+        document.querySelector('.logo-wrapper')?.addEventListener('click', () => {
+            clicksNoLogo++;
+            if (clicksNoLogo === 5) {
+                document.getElementById('admOverlay').classList.add('active');
+                clicksNoLogo = 0;
+                atualizarDashboardAdm();
+                mudarAbaAdm('dashboard');
+            }
+        });
+
+        function fecharAdm() {
+            document.getElementById('admOverlay').classList.remove('active');
+            clicksNoLogo = 0;
+        }
+
+        document.getElementById('admOverlay')?.addEventListener('click', (e) => {
+            if (e.target === document.getElementById('admOverlay')) {
+                fecharAdm();
+            }
+        });
+
+        function mudarAbaAdm(aba) {
+            document.querySelectorAll('.adm-tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.adm-tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById('adm-' + aba)?.classList.add('active');
+            
+            // Encontrar e marcar o botão correto
+            const botoes = document.querySelectorAll('.adm-tab-btn');
+            if (aba === 'dashboard') botoes[0]?.classList.add('active');
+            else if (aba === 'produtos') botoes[1]?.classList.add('active');
+            else if (aba === 'novo') botoes[2]?.classList.add('active');
+
+            if (aba === 'produtos') {
+                renderizarProdutosAdm();
+            } else if (aba === 'dashboard') {
+                atualizarDashboardAdm();
+            }
+        }
+
+        function atualizarDashboardAdm() {
+            let totalProdutos = 0;
+            let totalEstoque = 0;
+            let categorias = new Set();
+
+            Object.values(products).forEach((cat, idx) => {
+                cat.forEach(p => {
+                    totalProdutos++;
+                });
+                categorias.add(Object.keys(products)[idx]);
+            });
+
+            // Obter stats de visitas
+            const stats = JSON.parse(localStorage.getItem('esmeraldoStats')) || {
+                totalVisitas: 0,
+                visitasPorDia: {},
+                produtosVisualizados: {},
+                categoriasVisitadas: {},
+                ultimasVisitas: []
+            };
+
+            const hoje = new Date().toISOString().split('T')[0];
+            const visitasHoje = stats.visitasPorDia[hoje] || 0;
+
+            // Produtos mais visualizados
+            const topProdutos = Object.entries(stats.produtosVisualizados || {})
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 3);
+
+            // Atualizar HTML do dashboard com mais informações
+            const dashboardContent = `
+                <h3 style="margin-bottom: 1.5rem; color: var(--primary); font-size: 1.3rem;">📊 Dashboard de Estatísticas</h3>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                    <div style="background: linear-gradient(135deg, rgba(0,192,112,0.1), rgba(0,192,112,0.05)); border: 1px solid rgba(0,192,112,0.3); border-radius: 12px; padding: 1.5rem; text-align: center;">
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 0.75rem; font-weight: 700;">👥 Total de Visitas</div>
+                        <div style="font-size: 3rem; font-weight: 900; color: var(--primary);">${stats.totalVisitas}</div>
+                        <div style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.5rem;">Desde o início</div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, rgba(212,175,55,0.1), rgba(212,175,55,0.05)); border: 1px solid rgba(212,175,55,0.3); border-radius: 12px; padding: 1.5rem; text-align: center;">
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 0.75rem; font-weight: 700;">📅 Visitas Hoje</div>
+                        <div style="font-size: 3rem; font-weight: 900; color: var(--gold);">${visitasHoje}</div>
+                        <div style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.5rem;">${hoje}</div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, rgba(0,255,0,0.1), rgba(0,255,0,0.05)); border: 1px solid rgba(0,255,0,0.3); border-radius: 12px; padding: 1.5rem; text-align: center;">
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 0.75rem; font-weight: 700;">📦 Produtos</div>
+                        <div style="font-size: 3rem; font-weight: 900; color: #00ff00;">${totalProdutos}</div>
+                        <div style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.5rem;">Na loja</div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, rgba(255,56,56,0.1), rgba(255,56,56,0.05)); border: 1px solid rgba(255,56,56,0.3); border-radius: 12px; padding: 1.5rem; text-align: center;">
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 0.75rem; font-weight: 700;">🏷️ Categorias</div>
+                        <div style="font-size: 3rem; font-weight: 900; color: #ff6060;">${Object.keys(products).length}</div>
+                        <div style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.5rem;">Ativas</div>
+                    </div>
+                </div>
+
+                ${topProdutos.length > 0 ? `
+                    <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(0,192,112,0.15); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
+                        <h4 style="margin-bottom: 1rem; color: var(--primary);">🔥 Produtos Mais Visualizados</h4>
+                        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                            ${topProdutos.map((p, i) => `
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem; background: rgba(0,192,112,0.05); border-radius: 8px;">
+                                    <div style="font-weight: 600;">🥇 ${p[0]}</div>
+                                    <div style="background: var(--primary); color: #000; padding: 0.25rem 0.75rem; border-radius: 6px; font-weight: 700; font-size: 0.85rem;">${p[1]} views</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                ` : ''}
+
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(0,192,112,0.15); border-radius: 12px; padding: 1.5rem;">
+                    <h4 style="margin-bottom: 1rem; color: var(--primary);">📝 Últimas Visitas</h4>
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem; max-height: 300px; overflow-y: auto;">
+                        ${(stats.ultimasVisitas || []).slice(0, 10).map((v, i) => `
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem; border-bottom: 1px solid rgba(0,192,112,0.1); font-size: 0.85rem;">
+                                <span style="color: var(--text-secondary);">👤 Visita #${i + 1}</span>
+                                <span style="color: var(--gold); font-weight: 600;">${v.hora}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+
+            const dashboardDiv = document.getElementById('adm-dashboard');
+            if (dashboardDiv) {
+                dashboardDiv.innerHTML = dashboardContent;
+            }
+        }
+
+        function renderizarProdutosAdm() {
+            const grid = document.getElementById('admProdutosGrid');
+            let html = '';
+
+            Object.values(products).flat().forEach(p => {
+                html += `
+                    <div class="adm-produto-card">
+                        <div class="adm-produto-nome">${p.name}</div>
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.5rem;">${p.category || 'Sem categoria'}</div>
+                        <div class="adm-produto-preco">R$ ${p.price.toFixed(2).replace('.', ',')}</div>
+                        <div style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">
+                            ⭐ ${p.rating} (${p.reviews} reviews)
+                        </div>
+                        <div class="adm-product-actions">
+                            <button onclick="editarProdutoAdm(${p.id})">✏️ Editar</button>
+                            <button onclick="deletarProdutoAdm('${p.name}', ${p.id})">🗑️ Delete</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            grid.innerHTML = html || '<p style="grid-column: 1/-1; text-align: center; color: var(--text-secondary);">Nenhum produto encontrado</p>';
+        }
+
+        // Upload de múltiplas fotos
+        document.getElementById('admInputFotos')?.addEventListener('change', (e) => {
+            const files = Array.from(e.target.files || []);
+            fotosUploadadas = [];
+
+            files.forEach((file, index) => {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    fotosUploadadas.push({
+                        src: event.target.result,
+                        nome: file.name
+                    });
+
+                    const previewDiv = document.getElementById('admFotosPreview');
+                    const img = document.createElement('div');
+                    img.className = 'adm-image-item';
+                    img.innerHTML = `
+                        <img src="${event.target.result}" alt="Foto ${index + 1}">
+                        <button class="adm-image-remove" type="button" onclick="removerFoto(${index})">✕</button>
+                    `;
+                    previewDiv.appendChild(img);
+                };
+                reader.readAsDataURL(file);
+            });
+        });
+
+        function salvarProdutoAdm() {
+            const nome = document.getElementById('admNomeProduto').value.trim();
+            const categoria = document.getElementById('admCategoriaProduto').value;
+            const preco = parseFloat(document.getElementById('admPrecoProduto').value);
+            const precoOriginal = document.getElementById('admPrecoOriginal').value ? parseFloat(document.getElementById('admPrecoOriginal').value) : null;
+            const cor = document.getElementById('admCorProduto').value;
+            const rating = parseFloat(document.getElementById('admAvaliacaoProduto').value);
+            const reviews = parseInt(document.getElementById('admReviewsProduto').value);
+            const estoque = parseInt(document.getElementById('admEstoqueProduto').value);
+
+            const badges = [];
+            if (document.getElementById('admBadgeMaisVendida').checked) badges.push('Mais Vendida');
+            if (document.getElementById('admBadgeNovo').checked) badges.push('Novo');
+            if (document.getElementById('admBadgePromocao').checked) badges.push('Promoção');
+            if (document.getElementById('admBadgeImportada').checked) badges.push('Importada');
+
+            if (!nome || !categoria || !preco) {
+                alert('⚠️ Preencha os campos obrigatórios!');
+                return;
+            }
+
+            const novoProduto = {
+                id: editandoIdAdm || Date.now(),
+                name: nome,
+                category: categoria,
+                price: preco,
+                original: precoOriginal,
+                color: cor,
+                rating: rating,
+                reviews: reviews,
+                badges: badges,
+                fotos: fotosUploadadas
+            };
+
+            // Se é edição, remove o produto antigo
+            if (editandoIdAdm) {
+                Object.keys(products).forEach(cat => {
+                    products[cat] = products[cat].filter(p => p.id !== editandoIdAdm);
+                });
+            }
+
+            // Adiciona ou atualiza o produto na categoria correta
+            if (!products[categoria]) {
+                products[categoria] = [];
+            }
+            products[categoria].push(novoProduto);
+
+            // Salva no localStorage
+            localStorage.setItem('esmeraldoProducts', JSON.stringify(products));
+
+            // Re-renderiza os carrosséis no site
+            renderCarousels();
+
+            showNotification('✅ Produto ' + (editandoIdAdm ? 'atualizado' : 'adicionado') + ' com sucesso!');
+            limparFormAdm();
+            mudarAbaAdm('dashboard');
+            atualizarDashboardAdm();
+        }
+
+        function deletarProdutoAdm(nome, id) {
+            if (confirm('❌ Tem certeza que deseja deletar "' + nome + '"?')) {
+                // Remove de todas as categorias
+                Object.keys(products).forEach(cat => {
+                    products[cat] = products[cat].filter(p => p.id !== id);
+                });
+
+                // Salva no localStorage
+                localStorage.setItem('esmeraldoProducts', JSON.stringify(products));
+
+                // Re-renderiza
+                renderCarousels();
+                renderizarProdutosAdm();
+                atualizarDashboardAdm();
+
+                showNotification('✅ Produto deletado com sucesso!');
+            }
+        }
+
+        function removerFoto(index) {
+            fotosUploadadas.splice(index, 1);
+            const preview = document.getElementById('admFotosPreview');
+            preview.querySelectorAll('.adm-image-item')[index]?.remove();
+        }
+
+        function limparFormAdm() {
+            document.getElementById('admProdutoForm').reset();
+            document.getElementById('admFotosPreview').innerHTML = '';
+            fotosUploadadas = [];
+            editandoIdAdm = null;
+        }
+
+        function editarProdutoAdm(id) {
+            // Encontra o produto em todas as categorias
+            let produtoEncontrado = null;
+            Object.keys(products).forEach(cat => {
+                const p = products[cat].find(prod => prod.id === id);
+                if (p) produtoEncontrado = p;
+            });
+
+            if (!produtoEncontrado) return;
+
+            editandoIdAdm = id;
+            document.getElementById('admNomeProduto').value = produtoEncontrado.name;
+            document.getElementById('admCategoriaProduto').value = produtoEncontrado.category;
+            document.getElementById('admPrecoProduto').value = produtoEncontrado.price;
+            document.getElementById('admPrecoOriginal').value = produtoEncontrado.original || '';
+            document.getElementById('admCorProduto').value = produtoEncontrado.color;
+            document.getElementById('admAvaliacaoProduto').value = produtoEncontrado.rating;
+            document.getElementById('admReviewsProduto').value = produtoEncontrado.reviews;
+
+            // Carregar badges
+            document.getElementById('admBadgeMaisVendida').checked = produtoEncontrado.badges.includes('Mais Vendida');
+            document.getElementById('admBadgeNovo').checked = produtoEncontrado.badges.includes('Novo');
+            document.getElementById('admBadgePromocao').checked = produtoEncontrado.badges.includes('Promoção');
+            document.getElementById('admBadgeImportada').checked = produtoEncontrado.badges.includes('Importada');
+
+            // Carregar fotos se existirem
+            if (produtoEncontrado.fotos && produtoEncontrado.fotos.length > 0) {
+                fotosUploadadas = produtoEncontrado.fotos;
+                const previewDiv = document.getElementById('admFotosPreview');
+                previewDiv.innerHTML = '';
+                produtoEncontrado.fotos.forEach((foto, idx) => {
+                    const img = document.createElement('div');
+                    img.className = 'adm-image-item';
+                    img.innerHTML = `
+                        <img src="${foto.src}" alt="Foto">
+                        <button class="adm-image-remove" type="button" onclick="removerFoto(${idx})">✕</button>
+                    `;
+                    previewDiv.appendChild(img);
+                });
+            }
+
+            // Vai para a aba de novo/editar
+            mudarAbaAdm('novo');
+        }
+
+        // Carrega produtos do localStorage se existirem
+        const produtosSalvos = localStorage.getItem('esmeraldoProducts');
+        if (produtosSalvos) {
+            try {
+                products = JSON.parse(produtosSalvos);
+                renderCarousels();
+            } catch(e) {
+                console.log('Erro ao carregar produtos salvos');
+            }
+        }
+    </script>
+</body>
+</html>
